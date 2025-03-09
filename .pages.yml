@@ -27,16 +27,24 @@ content:
     fields:
       - { name: name, label: Name, widget: "string" }
       - { name: slug, label: Slug, type: string }
-      - label: "Date"
-        name: "date"
-        widget: "datetime"
-        default: "{{now}}"
-        date_format: "YYYY-MM-DD" # e.g. 24.12.2021
-        # time_format: "HH:mm" # e.g. 21:07
-        # timeFormat: false
-        # format: "YYYY-MM-DD"
-        picker_utc: false
-      - { name: date_chump, default: 1, label: "Order of chump on a given day", widget: "number", value_type: "int" }
+      # - label: "Date"
+      #   name: "date"
+      #   widget: "datetime"
+      #   default: "{{now}}"
+      #   date_format: "YYYY-MM-DD" # e.g. 24.12.2021
+      #   # time_format: "HH:mm" # e.g. 21:07
+      #   # timeFormat: false
+      #   # format: "YYYY-MM-DD"
+      #   picker_utc: false
+      - name: date
+        label: Date
+        type: date
+        options:
+          format: yyyy-MM-dd
+      # - { name: date_chump, default: 1, label: "Order of chump on a given day", widget: "number", value_type: "int" }
+      - name: date_chump
+        label: "Order of chump on a given day"
+        type: number
       - { name: thanks, default: "temp", label: Thanks, widget: "string" }
       - { name: url, default: "temp", label: URL, widget: "string" }
       - name: image
