@@ -24,10 +24,7 @@ content:
     label: Chumps
     type: collection
     path: src/content/chumps
-    view:
-      fields: [ title, draft, date ]
     fields:
-   fields:
       - { name: name, label: Name, widget: "string" }
       - { name: slug, label: Slug, type: string }
       - label: "Date"
