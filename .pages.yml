@@ -39,8 +39,15 @@ content:
       - { name: date_chump, default: 1, label: "Order of chump on a given day", widget: "number", value_type: "int" }
       - { name: thanks, default: "temp", label: Thanks, widget: "string" }
       - { name: url, default: "temp", label: URL, widget: "string" }
-      - { name: image, label: Image, widget: "image" }
-      - { name: media, label: Media, widget: "list", required: false, field: { name: file, widget: "image" } }
+      - name: image
+        label: Image
+        type: image
+        list: false
+        options:
+          path: src/content/chumps/images
+          extensions: [ jpg, jpeg, png, gif, webm ]
+      # - { name: image, label: Image, widget: "image" }
+      # - { name: media, label: Media, widget: "list", required: false, field: { name: file, widget: "image" } }
   - name: about
     label: About page
     type: file
