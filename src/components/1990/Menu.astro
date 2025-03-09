@@ -1,0 +1,284 @@
+---
+import "@styles/1990/menu.css";
+---
+
+<div class="menu_wrapper">
+  <div id="menu_content">
+    <img height="113" width="177" src="/images/1990/catmouse.gif" border="0" />
+
+    <form name="y_datetime">
+      <input
+        id="textbox1"
+        type="text"
+        size="32"
+        width="32"
+        name="textbox1"
+        style="text-align=center"
+      />
+    </form>
+
+    <script language="javascript">
+      date = new Object();
+      date.style = 2; // choose style
+      date.military = 0; // am/pm time or miltary time
+
+      date.days1 = new Array("Sun", "Mon", "Tues", "Wed", "Thur", "Fri", "Sat");
+      date.days2 = new Array(
+        "Sunday",
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday"
+      );
+      date.months1 = new Array(
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr",
+        "May",
+        "June",
+        "July",
+        "Aug",
+        "Sept",
+        "Oct",
+        "Nov",
+        "Dec"
+      );
+      date.months2 = new Array(
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December"
+      );
+
+      function datedisplay() {
+        date.now = new Date();
+        date.year = date.now.getFullYear();
+        date.month = date.now.getMonth();
+        date.date = date.now.getDate();
+        date.day = date.now.getDay();
+        date.hour = date.now.getHours();
+        date.min = date.now.getMinutes();
+        date.sec = date.now.getSeconds();
+        date.ampm = "";
+
+        if (date.military) {
+          if (date.hour < 10) {
+            date.hour = "0" + date.hour;
+          }
+        } else if (date.hour > 11) {
+          date.ampm = "pm";
+          date.hour = date.hour - 12;
+        } else {
+          date.ampm = "am";
+        }
+
+        if (date.hour == 0) {
+          date.hour = 12;
+        }
+        if (date.min < 10) {
+          date.min = "0" + date.min;
+        }
+        if (date.sec < 10) {
+          date.sec = "0" + date.sec;
+        }
+
+        if (date.style == 0) {
+          date.txt =
+            date.months2[date.month] + " " + date.date + " " + date.year;
+        } else if (date.style == 1) {
+          date.txt =
+            date.days2[date.day] +
+            " " +
+            date.hour +
+            ":" +
+            date.min +
+            ":" +
+            date.sec +
+            " " +
+            date.ampm;
+        } else if (date.style == 2) {
+          date.txt =
+            date.months2[date.month] +
+            " " +
+            date.date +
+            " " +
+            date.year +
+            " , " +
+            date.hour +
+            ":" +
+            date.min +
+            ":" +
+            date.sec +
+            " " +
+            date.ampm;
+        } else if (date.style == 3) {
+          date.txt =
+            date.days1[date.day] +
+            " " +
+            date.months1[date.month] +
+            " " +
+            date.date +
+            " " +
+            date.year +
+            " , " +
+            date.hour +
+            ":" +
+            date.min +
+            ":" +
+            date.sec +
+            " " +
+            date.ampm;
+        } else if (date.style == 4) {
+          date.txt =
+            date.month +
+            1 +
+            "/" +
+            date.date +
+            "/" +
+            date.year +
+            " , " +
+            date.hour +
+            ":" +
+            date.min +
+            ":" +
+            date.sec +
+            " " +
+            date.ampm;
+        } else {
+          date.txt =
+            date.year +
+            "/" +
+            (date.month + 1) +
+            "/" +
+            date.date +
+            " , " +
+            date.hour +
+            ":" +
+            date.min +
+            ":" +
+            date.sec +
+            " " +
+            date.ampm;
+        }
+        //   document.y_datetime.textbox1.value = date.txt;
+        document.getElementById("textbox1").value = date.txt;
+        date.id = setTimeout("datedisplay()", 1000);
+      }
+
+      datedisplay();
+    </script>
+
+    <hr />
+    <p>
+      <b>
+        <font size="4">Website versions:</font>
+      </b>
+    </p>
+    <p>
+      <ul>
+        <li>
+          <font size="4"
+            ><b
+              ><a href="/2000" target="_top"
+                ><img width="100" src="/images/1990/2000.gif" /></a
+              ></b
+            >
+          </font>
+        </li>
+
+        <hr />
+
+        <title>CMenu</title>
+        <base target="_blank" />
+
+        <p>
+          <b>
+            <font size="4"
+              ><img src="/images/1990/Home.gif" width="42" height="53" /><a
+                href="main2"
+                target="_top"
+                ">home</a
+              >
+            </font>
+          </b>
+        </p>
+        <p>
+          <p>
+            <b>
+              <font size=" 4"
+                ><img
+                  src="/images/general/adplea.gif"
+                  width="42"
+                  height="53"
+                /><a href="about" target="_top">about</a>
+              </font>
+            </b>
+          </p>
+          <p>
+            <font size="4"
+              ><b
+                ><img
+                  src="/images/1990/pikaonball.gif"
+                  width="42"
+                  height="50"
+                /><a href="history" target="_top">history</a></b
+              >
+            </font>
+          </p>
+          <p>
+            <font size="4"
+              ><b
+                ><img src="/images/1990/WOWANIM.GIF" width="42" height="50" /><a
+                  href="stats"
+                  target="_top">stats</a
+                ></b
+              >
+            </font>
+          </p>
+          <p>
+            <font size="4"
+              ><b
+                ><img
+                  src="/images/1990/comis_shrek.gif"
+                  width="42"
+                  height="50"
+                /><a href="cool_pix" target="_top">cool pix i found</a></b
+              >
+            </font>
+          </p>
+          <p>
+            <font size="4"
+              ><b
+                ><img src="/images/1990/540.gif" width="41" height="50" /><a
+                  href="https://www.ultraguest.com/view/1734986805"
+                  target="blank">guestbook</a
+                ></b
+              >
+            </font>
+            <div class="cube_container">
+              <div class="cube">
+                <div class="face top"></div>
+                <div class="face bottom"></div>
+                <div class="face left"></div>
+                <div class="face right"></div>
+                <div class="face front"></div>
+                <div class="face back"></div>
+              </div>
+            </div>
+          </p>
+        </p>
+      </ul>
+    </p>
+  </div>
+</div>

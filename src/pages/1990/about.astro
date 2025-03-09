@@ -1,0 +1,8 @@
+---
+import Layout from "@layouts/1990Layout.astro";
+import "@styles/1990/main.css";
+import { getChumpData } from "@utils/getChumps";
+const chumpData = await getChumpData();
+---
+
+<Layout title="History" />

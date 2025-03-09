@@ -20,6 +20,30 @@ content:
       - { name: tags, label: Tags, type: string, list: true }
       - { name: description, label: Description, type: string, required: true  }
       - { name: body, label: Body, type: rich-text }
+  - name: chumps
+    label: Chumps
+    type: collection
+    path: src/content/chumps
+    view:
+      fields: [ title, draft, date ]
+    fields:
+   fields:
+      - { name: name, label: Name, widget: "string" }
+      - { name: slug, label: Slug, type: string }
+      - label: "Date"
+        name: "date"
+        widget: "datetime"
+        default: "{{now}}"
+        date_format: "YYYY-MM-DD" # e.g. 24.12.2021
+        # time_format: "HH:mm" # e.g. 21:07
+        # timeFormat: false
+        # format: "YYYY-MM-DD"
+        picker_utc: false
+      - { name: date_chump, default: 1, label: "Order of chump on a given day", widget: "number", value_type: "int" }
+      - { name: thanks, default: "temp", label: Thanks, widget: "string" }
+      - { name: url, default: "temp", label: URL, widget: "string" }
+      - { name: image, label: Image, widget: "image" }
+      - { name: media, label: Media, widget: "list", required: false, field: { name: file, widget: "image" } }
   - name: about
     label: About page
     type: file

@@ -1,0 +1,99 @@
+.menu {
+    /* background: "/images/1990/pinksnowman.gif */
+    background: url('/images/1990/pinksnowman.gif') repeat;
+    overflow-x: hidden;
+    width: 100%;
+}
+
+.menu_wrapper {
+    
+}
+
+@keyframes turn {
+    from {
+        transform: rotate3d(0, 0, 0, 0);
+    }
+
+    to {
+        transform: rotate3d(1, 1, 0, 360deg);
+    }
+}
+
+/* set cube width variable for easy adjustment */
+:root {
+    --cube-width: 75px;
+}
+
+.cube_container {
+    width: var(--cube-width);
+    height: var(--cube-width);
+    perspective: 500px;
+    margin: auto;
+    margin-top: calc(var(--cube-width) / 2);
+}
+
+.cube {
+    position: relative;
+    width: var(--cube-width);
+    height: var(--cube-width);
+    transform-style: preserve-3d;
+    animation: turn 5s linear infinite;
+}
+
+.face {
+    width: var(--cube-width);
+    height: var(--cube-width);
+    background: skyblue;
+    border: 2px solid black;
+    position: absolute;
+    /* opacity: 0.5; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Arial, sans-serif;
+    font-size: 2rem;
+    transition: transform 500ms;
+}
+
+.front {
+    transform: translateZ(calc(var(--cube-width) / 2));
+    background-image: url('/images/1990/lovebearblinkie.gif');
+    background-size: cover;
+}
+
+.back {
+    transform: translateZ(calc(-1 * var(--cube-width) / 2)) rotateY(180deg);
+    background-image: url('/images/1990/skeleton4.gif');
+    background-size: cover;
+}
+
+.left {
+    transform: translateX(calc(-1 * var(--cube-width) / 2)) rotateY(-90deg);
+    background-image: url('/images/1990/RIP.gif');
+    background-size: cover;
+}
+
+.right {
+    transform: translateX(calc(var(--cube-width) / 2)) rotateY(90deg);
+    background-image: url('/images/1990/200w.gif');
+    background-size: cover;
+}
+
+.top {
+    transform: translateY(calc(-1 * var(--cube-width) / 2)) rotateX(90deg);
+    background-image: url('/images/1990/helaugh.gif');
+    background-size: cover;
+}
+
+.bottom {
+    transform: translateY(calc(var(--cube-width) / 2)) rotateX(-90deg);
+    background-image: url('/images/1990/4764eb381d20c7c38f4967663a200524908bc649.gif');
+    background-size: cover;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .cube {
+        animation: none;
+        transform: rotate3d(1, 1, 0, 45deg);
+    }
+}

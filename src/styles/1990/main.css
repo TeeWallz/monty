@@ -1,0 +1,50 @@
+/* TD {
+    color : White; 
+    background-color : transparent; 
+    border-width : medium; 
+    border-style : ridge solid solid ridge; 
+    border-color : silver;
+    
+ }
+ 
+ H4 {
+    font-family : "Times New Roman;sans-serif"; 
+    color : white; 
+    background : transparent; 
+ }
+ 
+ H3 {
+    font-size : medium; 
+    color : white; 
+    background : transparent; 
+ }
+ 
+ H2 {
+    font-size : large; 
+    color : white; 
+    background : transparent; 
+ }
+ 
+ H1 {
+    font-size : x-large; 
+    color : white; 
+    background : transparent; 
+ }
+ */
+ .main { 
+    background : transparent url("/images/1990/padukcrbk.gif") repeat;
+ }
+/*  
+ A:visited {
+    color : yellow; 
+    background-color : transparent; 
+    text-decoration : underline; 
+ }
+ 
+ A:link {
+    color : lime; 
+    background-color : transparent; 
+    text-decoration : underline; 
+ }
+ 
+  */

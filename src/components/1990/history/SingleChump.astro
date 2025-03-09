@@ -1,0 +1,89 @@
+---
+import { Image, getImage } from "astro:assets";
+import type { Chump } from "../../../utils/getChumps";
+// const { chump } = Astro.props;
+// above but typed
+const { chump } = Astro.props;
+// images[`/src/content/chumps/${chump.data.image}`]()
+const image = "";
+---
+
+<tr>
+  <td
+    width="153"
+    bordercolor="#000080"
+    bordercolorlight="#000080"
+    bordercolordark="#000080"
+    height="49"
+    rowspan="3"
+    align="center"
+    valign="middle"
+    ><!--mstheme-->
+    <font face="arial, helvetica"> <!--mstheme--></font></td
+  >
+  <td
+    width="442"
+    bordercolor="#000080"
+    bordercolorlight="#000080"
+    bordercolordark="#000080"
+    height="5"
+    ><!--mstheme-->
+    <font face="arial, helvetica"
+      ><large
+        ><font color="#FFFFFF">
+          <a href={chump.data.url} target="_blank">{chump.data.name}</a>
+        </font></large
+      ><!--mstheme--></font
+    ></td
+  >
+</tr>
+<tr>
+  <td
+    width="442"
+    bordercolor="#000080"
+    bordercolorlight="#000080"
+    bordercolordark="#000080"
+    height="5"
+    ><!--mstheme-->
+    <font face="arial, helvetica"
+      ><small
+        ><font color="#FFFFFF"
+          ><br />
+          {chump.data.localisedDate}
+        </font></small
+      ><!--mstheme--></font
+    ></td
+  >
+</tr>
+<tr>
+  <td
+    width="442"
+    bordercolor="#000080"
+    bordercolorlight="#000080"
+    bordercolordark="#000080"
+    height="5"
+    ><!--mstheme-->
+    <font face="arial, helvetica"
+      ><small
+        ><font color="#FFFFFF">
+          {chump.data.streak} days <br />
+          {chump.data.thanks}
+        </font></small
+      ><!--mstheme--></font
+    ></td
+  >
+</tr>
+<tr>
+  <td
+    width="592"
+    bordercolor="#000080"
+    bordercolorlight="#000080"
+    bordercolordark="#000080"
+    height="1"
+    colspan="2"
+    align="center"
+    valign="middle"
+    ><!--mstheme-->
+    <font face="arial, helvetica"><!--mstheme--></font></td
+  >
+</tr>

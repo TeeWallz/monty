@@ -1,0 +1,165 @@
+---
+import fs from "fs";
+import { Image, getImage } from "astro:assets";
+
+import Layout from "@layouts/1990Layout.astro";
+import ChumpYearComponent from "@components/1990/history/ChumpYearComponent.astro";
+import "@styles/1990/main.css";
+import { getChumpData } from "@utils/getChumps";
+const chumpData = await getChumpData();
+const backgroundImages = JSON.parse(
+  fs.readFileSync("public/images/bg/backgrounds.json", "utf8")
+);
+---
+
+<Layout title="History">
+  <div id="history_inner_body">
+    <script define:vars={{ backgroundImages }}>
+      class BackgroundCycler {
+        constructor() {
+          // this.currentImageIndex = 0;
+          // set initial image to random
+          this.currentImageIndex = Math.floor(
+            Math.random() * backgroundImages.length
+          );
+          // debugger;
+          this.backgroundElement =
+            window.frames["window"].document.getElementsByClassName(
+              "content"
+            )[0];
+          console.log("backgroundElement", this.backgroundElement);
+          this.setupEventListeners();
+          this.updateBackground();
+        }
+
+        setupEventListeners() {
+          console.log("setupEventListeners");
+          window.addEventListener("keydown", event => {
+            if (event.key === "ArrowLeft") {
+              this.previousImage();
+            } else if (event.key === "ArrowRight") {
+              this.nextImage();
+            }
+          });
+
+          document
+            .getElementById("prev-btn")
+            ?.addEventListener("click", () => this.previousImage());
+          document
+            .getElementById("next-btn")
+            ?.addEventListener("click", () => this.nextImage());
+        }
+
+        previousImage() {
+          console.log("previousImage");
+          this.currentImageIndex =
+            (this.currentImageIndex - 1 + backgroundImages.length) %
+            backgroundImages.length;
+          this.updateBackground();
+        }
+
+        nextImage() {
+          console.log("nextImage");
+          this.currentImageIndex =
+            (this.currentImageIndex + 1) % backgroundImages.length;
+          this.updateBackground();
+        }
+
+        updateBackground() {
+          console.log("updateBackground");
+          if (this.backgroundElement) {
+            // make sure image is downloaded before setting it as background
+            const img = new Image();
+            img.src = backgroundImages[this.currentImageIndex];
+            img.onload = () => {
+              this.backgroundElement.style.backgroundImage = `url('${img.src}')`;
+            };
+          }
+        }
+      }
+      // run after page load
+      window.onload = () => new BackgroundCycler();
+    </script>
+
+    <!-- headers to show that the background can be changed using arrows or two button -->
+    <!-- along with some images as buttons -->
+    <div style="text-align: center; margin-bottom: 20px;">
+      <img
+        id="prev-btn"
+        src="/images/general/previous.gif"
+        alt="Previous Background"
+        style="margin-right: 10px; cursor: pointer;"
+      />
+      <img
+        id="next-btn"
+        src="/images/general/next_skellington.gif"
+        alt="Next Background"
+        style="cursor: pointer;"
+      />
+    </div>
+    <div
+      style="text-align: center; margin-bottom: 20px; background-color: #000"
+    >
+      <font face="arial, helvetica" color="#FFFFFF" size="+2">
+        Use the <strong>Arrow Keys</strong> or click the buttons to change the background!!
+      </font>
+    </div>
+
+    <center>
+      <table style="background-color: #f7ff00">
+        <tbody>
+          <tr>
+            <td
+              width="592"
+              bordercolorlight="#000080"
+              bordercolordark="#000080"
+              height="1"
+              colspan="2"
+              valign="middle"
+            >
+              <p align="center">
+                <font face="arial, helvetica">
+                  <font color="#FFFFFF" size="+3"
+                    ><strong>
+                      <img
+                        src="/images/general/HISTORY_B.gif"
+                        alt="line"
+                        style="height: 70px; display: inline;"
+                      />
+                      of failed attemptes at taking down monty!!</strong
+                    ></font
+                  >
+                </font><!--mstheme-->
+              </p>
+              <img src="/images/1990/go.gif" alt="line" style="height: 70px;" />
+            </td>
+          </tr>
+          <tr>
+            <td
+              width="592"
+              bordercolor="#000080"
+              bordercolorlight="#000080"
+              bordercolordark="#000080"
+              height="1"
+              colspan="2"
+              align="center"
+              valign="middle"
+              ><!--mstheme-->
+              <font face="arial, helvetica"><!--mstheme--></font>
+            </td>
+          </tr>
+          <hr width="100%" />
+        </tbody>
+      </table>
+      <hr width="100%" />
+
+      {
+        chumpData.chumpsByYear.map(chumpYear => (
+          <astro:fragment>
+            <ChumpYearComponent chumpYear={chumpYear} />
+          </astro:fragment>
+        ))
+      }
+    </center>
+  </div>
+</Layout>

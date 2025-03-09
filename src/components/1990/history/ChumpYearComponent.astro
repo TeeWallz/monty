@@ -1,0 +1,61 @@
+---
+import type { ChumpYear } from "../../../utils/getChumps";
+import SingleChump from "./SingleChump.astro";
+
+const chumpYear: ChumpYear = Astro.props.chumpYear;
+---
+
+<table
+  border="1"
+  style="border: medium none rgb(0,0,128); background-color: #640000; border-color: darkblue; border-width: 4px;"
+  height="1"
+  align="center"
+  width="607"
+  bordercolordark="#333333"
+  bordercolorlight="#666666"
+>
+  <tbody>
+    <tr
+      style="background-image: url('/images/1990/sparklebackground.gif'); background-repeat: repeat-x;"
+    >
+      <td
+        width="592"
+        backround
+        bordercolor="#000080"
+        bordercolorlight="#000080"
+        bordercolordark="#000080"
+        height="1"
+        colspan="2"
+        align="center"
+        valign="middle"
+      >
+        <font face="arial, helvetica">
+          <div>
+            <img
+              src="/images/1990/cobweb_nw.gif"
+              alt="line"
+              height="70"
+              style="float: left;"
+            />
+            <img
+              src="/images/1990/cobweb_ne.gif"
+              alt="line"
+              height="70"
+              style="float: right;"
+            />
+          </div>
+          <font color="#FFFFFF" size="+3"
+            ><strong>
+              <img src="/images/general/my_boy.gif" alt="line" height="70" />
+              {chumpYear.year}
+              <img src="/images/1990/mouse.gif" alt="line" height="70" />
+            </strong></font
+          >
+        </font>
+      </td>
+    </tr>
+  </tbody>
+  <astro:fragment>
+    {chumpYear.chumps.map(chump => <SingleChump chump={chump} />)}
+  </astro:fragment>
+</table>
