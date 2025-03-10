@@ -1,163 +1,327 @@
 ---
-import { getCollection } from "astro:content";
-import Layout from "@layouts/Layout.astro";
-import Header from "@components/Header.astro";
-import Footer from "@components/Footer.astro";
-import LinkButton from "@components/LinkButton.astro";
-import Hr from "@components/Hr.astro";
-import Card from "@components/Card";
-import Socials from "@components/Socials.astro";
-import getSortedPosts from "@utils/getSortedPosts";
-import { SOCIALS } from "@config";
+import Layout from "@layouts/2010Layout.astro";
 
-const posts = await getCollection("blog");
+import { getChumpData } from "@utils/getChumps";
+const chumpData = await getChumpData();
 
-const sortedPosts = getSortedPosts(posts);
-const featuredPosts = sortedPosts.filter(({ data }) => data.featured);
-const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
-
-const socialCount = SOCIALS.filter(social => social.active).length;
+const cooLinks = [
+  {
+    name: "Why Do Trucks Keep Smashing Into This Bridge?",
+    url: "https://www.youtube.com/watch?v=HR7NivKqfzo",
+  },
+  {
+    name: "Montague st Bridge by David Cosma",
+    url: "https://www.youtube.com/watch?v=jaUo1KXIU1k",
+  },
+];
 ---
 
 <Layout>
-  <Header />
-  <main id="main-content">
-    <section id="hero">
-      <h1>Mingalaba</h1>
-      <a
-        target="_blank"
-        href="/rss.xml"
-        class="rss-link"
-        aria-label="rss feed"
-        title="RSS Feed"
-      >
-        <svg xmlns="http://www.w3.org/2000/svg" class="rss-icon"
-          ><path
-            d="M19 20.001C19 11.729 12.271 5 4 5v2c7.168 0 13 5.832 13 13.001h2z"
-          ></path><path
-            d="M12 20.001h2C14 14.486 9.514 10 4 10v2c4.411 0 8 3.589 8 8.001z"
-          ></path><circle cx="6" cy="18" r="2"></circle>
-        </svg>
-        <span class="sr-only">RSS Feed</span>
-      </a>
+  <!-- Day Counter -->
+  <div class="section section-width">
+    <img
+      src="/images/2010/general/FRboxing.gif"
+      style="position: absolute; margin-right: 245px;"
+    />
 
-      <p>
-        AstroPaper is a minimal, responsive, accessible and SEO-friendly Astro
-        blog theme. This theme follows best practices and provides accessibility
-        out of the box. Light and dark mode are supported by default. Moreover,
-        additional color schemes can also be configured.
-      </p>
-      <p>
-        Read the blog posts or check
-        <LinkButton
-          className="underline decoration-dashed underline-offset-4 hover:text-skin-accent"
-          href="https://github.com/satnaing/astro-paper#readme"
-        >
-          README
-        </LinkButton> for more info.
-      </p>
-      {
-        // only display if at least one social link is enabled
-        socialCount > 0 && (
-          <div class="social-wrapper">
-            <div class="social-links">Social Links:</div>
-            <Socials />
-          </div>
-        )
-      }
-    </section>
-
-    <Hr />
-
-    {
-      featuredPosts.length > 0 && (
-        <>
-          <section id="featured">
-            <h2>Featured</h2>
-            <ul>
-              {featuredPosts.map(({ data, slug }) => (
-                <Card
-                  href={`/posts/${slug}/`}
-                  frontmatter={data}
-                  secHeading={false}
-                />
-              ))}
-            </ul>
-          </section>
-          {recentPosts.length > 0 && <Hr />}
-        </>
-      )
-    }
-
-    {
-      recentPosts.length > 0 && (
-        <section id="recent-posts">
-          <h2>Recent Posts</h2>
-          <ul>
-            {recentPosts.map(
-              ({ data, slug }, index) =>
-                index < 4 && (
-                  <Card
-                    href={`/posts/${slug}/`}
-                    frontmatter={data}
-                    secHeading={false}
-                  />
-                )
-            )}
-          </ul>
-        </section>
-      )
-    }
-
-    <div class="all-posts-btn-wrapper">
-      <LinkButton href="/posts/">
-        All Posts
-        <svg xmlns="http://www.w3.org/2000/svg"
-          ><path
-            d="m11.293 17.293 1.414 1.414L19.414 12l-6.707-6.707-1.414 1.414L15.586 11H6v2h9.586z"
-          ></path>
-        </svg>
-      </LinkButton>
+    <div class="day-counter-wrapper">
+      <img class="wreath" src="/images/2010/general/wreath.png" />
+      <div class="day-counter">{chumpData.chumps[0].data.streak}</div>
     </div>
-  </main>
 
-  <Footer />
+    <div class="common-big-text">
+      As of {chumpData.chumps[0].data.localisedDate}
+    </div>
+  </div>
+
+  <!-- Latest chump -->
+  <div class="section section-width">
+    <div class="common-header-text">
+      Current ''''<span
+        ><img src="/images/2010/general/championredflaming2.gif" /></span
+      >''''
+    </div>
+    <div class="chump-image-frame">
+      <div class="chump-image-container">
+        <img class="frame-ribbon" src="/images/2010/general/ribbon.png" />
+        <!-- Dynamic Image/Video -->
+        <!-- {% if extension == 'webm' %} -->
+        <!-- <video width="320" height="320" autoplay muted loop> -->
+        <!-- <source src="{{ chumps[0].image }}" type="video/webm" /> -->
+        <!-- Your browser does not support the video tag. -->
+        <!-- </video> -->
+        <!-- {% else %} -->
+        <img class="chump-image" src={chumpData.chumps[0].data.image} />
+        <!-- {% endif %} -->
+      </div>
+
+      <img class="candle candle-left" src="/images/2010/general/candle.gif" />
+      <img class="candle candle-right" src="/images/2010/general/candle.gif" />
+    </div>
+    <div class="chump-name common-big-text">
+      <a href="{chumpData.chumps[0].data.url}" target="_blank"
+        >{chumpData.chumps[0].data.name}</a
+      >
+    </div>
+  </div>
+
+  <!-- Stats -->
+  <div class="section section-width">
+    <div class="common-header-text">Stats</div>
+
+    <div class="stats-wrapper">
+      <!-- Left Image -->
+      <div class="stats-image-div">
+        <img
+          class="stats-image"
+          src="/images/2010/general/m_monster_scribbling_notes_md_nwm_v2.gif"
+        />
+      </div>
+
+      <!-- Stats Table -->
+      <div>
+        <table class="stats-table">
+          <tbody>
+            <tr>
+              <td class="text-align-right">Days Since Last:</td>
+              <td
+                >{chumpData.chumps[0].data.streak}
+                {chumpData.chumps[0].data.streak === 1 ? "day" : "days"}</td
+              >
+            </tr>
+            <tr>
+              <td class="text-align-right">Last bout date:</td>
+              <td>{chumpData.chumps[0].data.localisedDate}</td>
+            </tr>
+            <tr>
+              <td class="text-align-right">Current Status:</td>
+              <td>{chumpData.stats.streakStatus}</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td class="text-align-right">Average Streak:</td>
+              <td>{chumpData.stats.average} days</td>
+            </tr>
+            <tr>
+              <td class="text-align-right">Median Streak:</td>
+              <td>{chumpData.stats.median} days</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Right Image -->
+      <div class="stats-image-div">
+        <img
+          class="stats-image"
+          src="/images/2010/general/mad_scientist_with_clipboard_anim_300_wht.gif"
+          style="transform: scaleX(-1); -webkit-transform: scaleX(-1);"
+        />
+      </div>
+    </div>
+  </div>
+
+  <!-- History -->
+
+  <div class="section section-width">
+    <img src="/images/2010/general/rainhistory.gif" />
+
+    <table>
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Chump</th>
+          <th>Streak</th>
+          <th>Link</th>
+          <th>Image</th>
+        </tr>
+      </thead>
+      <tbody>
+        {
+          chumpData.chumps.map((chump, index) => (
+            <tr>
+              <td>{chump.data.localisedDate}</td>
+
+              <td>
+                <div style="cursor: pointer;">
+                  <div style="font-size: 1em;">{chump.data.name}</div>
+                  <div class="thanks-text">{chump.data.thanks}</div>
+                </div>
+              </td>
+
+              <td>
+                <div
+                  class="streak-bar"
+                  style={`width: ${chump.data.streak_max_proportion * 100}%`}
+                >
+                  {chump.data.streak}
+                </div>
+              </td>
+
+              <td>
+                <span
+                  class="chump-link"
+                  onClick={() =>
+                    window.open(chump!.data!.url, "_blank").focus()
+                  }
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    fill="currentColor"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"
+                    />
+                    <path
+                      fill-rule="evenodd"
+                      d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"
+                    />
+                  </svg>
+                </span>
+              </td>
+
+              <td>
+                <span
+                  class="image-button"
+                  onClick={() =>
+                    setLightboxData({
+                      lightboxIsOpen: true,
+                      lightboxCurrentChumpId: index,
+                    })
+                  }
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    fill="currentColor"
+                    viewBox="0 0 16 16"
+                  >
+                    <path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
+                    <path d="M2.002 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2h-12zm12 1a1 1 0 0 1 1 1v6.5l-3.777-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12V3a1 1 0 0 1 1-1h12z" />
+                  </svg>
+                </span>
+              </td>
+            </tr>
+          ))
+        }
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Streak Calendar -->
+  <!-- <div class="section section-width">
+        <div class="common-header-text">
+            Streak Calendar
+        </div>
+        <div class="rows">
+            <div class="chart-rows">
+                {Object.keys(chumpData.chumpsByYearWeek).map((year) => (
+                    <div class="chart-row">
+                        <div class="year common-big-text">
+                            {year}
+                        </div>
+                        <div class="hit-list">
+                            {Object.keys(chumpData.chumpsByYearWeek[year]).map((elemWeek) => (
+                                <div class="hit-list">
+                                    <div
+                                        class="tooltip"
+                                        onclick={() => setLightboxData({ lightboxIsOpen: true, key: [year, elemWeek] })}
+                                    >
+                                        <div
+                                            class={`
+                                                hit-box
+                                                ${chumpData.chumpsByYearWeek[year][elemWeek].length > 1 ? 'hit-box-double-kill' : ''}
+                                                ${chumpData.chumpsByYearWeek[year][elemWeek].length === 1 ? 'hit-box-hit' : ''}
+                                                ${chumpData.chumpsByYearWeek[year][elemWeek].length === 0 ? 'hit-box-safe' : ''}
+                                            `}
+                                        >
+                                            {chumpData.chumpsByYearWeek[year][elemWeek].length}
+                                        </div>
+                                        <div class="tooltip-text">
+                                            <div class="popup-box">
+                                                <img
+                                                    src={chumpData.chumpsByYearWeek[year][elemWeek][0]?.image}
+                                                    style="width: 7em;"
+                                                    alt="Chump Image"
+                                                />
+                                                <div>{chumpData.chumpsByYearWeek[year][elemWeek][0]?.date}</div>
+                                                <div>{chumpData.chumpsByYearWeek[year][elemWeek][0]?.name}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </div>
+    </div> -->
+
+  <!-- Histogram -->
+  <!-- <div class="section section-width">
+        <div class="common-header-text">Histogram of Streaks</div>
+        <div class="bar-chart">
+            {histogramData.map((bin, index) => (
+                <div
+                    class="bar"
+                    style={`height: ${(bin.count / Math.max(...histogramData.map(b => b.count))) * 100}%;`}
+                >
+                    <div class="bar-label">
+                        {Math.round(bin.start)}-{Math.round(bin.end)}
+                    </div>
+                </div>
+            ))}
+        </div>
+        <div class="x-axis-label">Streaks in days</div>
+    </div> -->
+
+  <!-- Links -->
+  <div class="section section-width">
+    <div class="common-header-text">Links which what I found cool</div>
+
+    {
+      cooLinks.map(item => {
+        return (
+          <div>
+            <img
+              style={{ width: "2em" }}
+              src={"/images/2010/general/arrow33.gif"}
+            />
+            <a target="_blank" href={item.url}>
+              {item.name}
+            </a>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+              focusable="false"
+              x="0px"
+              y="0px"
+              viewBox="0 0 100 100"
+              width="15"
+              height="15"
+              className="icon outbound"
+            >
+              <path
+                fill="currentColor"
+                d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"
+              />
+              <polygon
+                fill="currentColor"
+                points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"
+              />
+            </svg>
+          </div>
+        );
+      })
+    }
+  </div>
 </Layout>
-
-<style>
-  /* ===== Hero Section ===== */
-  #hero {
-    @apply pb-6 pt-8;
-  }
-  #hero h1 {
-    @apply my-4 inline-block text-3xl font-bold sm:my-8 sm:text-5xl;
-  }
-  #hero .rss-link {
-    @apply mb-6;
-  }
-  #hero .rss-icon {
-    @apply mb-2 h-6 w-6 scale-110 fill-skin-accent sm:mb-3 sm:scale-125;
-  }
-  #hero p {
-    @apply my-2;
-  }
-  .social-wrapper {
-    @apply mt-4 flex flex-col sm:flex-row sm:items-center;
-  }
-  .social-links {
-    @apply mb-1 mr-2 whitespace-nowrap sm:mb-0;
-  }
-
-  /* ===== Featured & Recent Posts Sections ===== */
-  #featured,
-  #recent-posts {
-    @apply pb-6 pt-12;
-  }
-  #featured h2,
-  #recent-posts h2 {
-    @apply text-2xl font-semibold tracking-wide;
-  }
-  .all-posts-btn-wrapper {
-    @apply my-8 text-center;
-  }
-</style>
