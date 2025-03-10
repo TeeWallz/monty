@@ -34,11 +34,13 @@ export const statsZod = z.object({
       y: z.number(),
     })
   ),
+  streakStatus: z.string(),
 });
 export type ChumpSingleData = z.infer<typeof ChumpDataZod>;
 export type Chump = z.infer<typeof ChumpZod>;
 export type ChumpStats = z.infer<typeof statsZod>;
 export type ChumpsByYearMap = Map<number, Chump[]>;
+export type ChumpsByYearWeekMap = Map<number, Map<number, Chump[]>>;
 export interface ChumpYear {
   year: number;
   chumps: Chump[];
@@ -49,6 +51,7 @@ export interface ChumpData {
   stats: ChumpStats;
   chumpsByYear: ChumpYear[];
   chumpsByYearMap: ChumpsByYearMap;
+  chumpsByYearWeek: ChumpsByYearWeekMap;
 }
 
 export async function getChumpData(): Promise<ChumpData> {
@@ -103,7 +106,24 @@ export async function getChumpData(): Promise<ChumpData> {
     };
   });
 
-  return { chumps, stats, chumpsByYear, chumpsByYearMap };
+  const chumpsByYearWeek = {};
+  chumps.forEach(chump => {
+    const date = chump.data.date;
+    const year = date.getFullYear();
+    const week = Math.ceil(
+      (date.getTime() - new Date(year, 0, 1).getTime()) /
+        (7 * 24 * 60 * 60 * 1000)
+    );
+    if (!chumpsByYearWeek[year]) {
+      chumpsByYearWeek[year] = {};
+    }
+    if (!chumpsByYearWeek[year][week]) {
+      chumpsByYearWeek[year][week] = [];
+    }
+    chumpsByYearWeek[year][week].push(chump);
+  });
+
+  return { chumps, stats, chumpsByYear, chumpsByYearMap, chumpsByYearWeek };
 }
 
 export function calculateStreakFromStrings(
@@ -135,12 +155,30 @@ export function calculateChumpStatistics(chumps: Chump[]): any {
   const max = getMaxValue(streaks);
   const min = getMinValue(streaks);
   const normalDistribution = calculateNormalDistribution(streaks);
+
+  const averageExpectingGateDays = 7;
+  let streakStatus = "";
+  if (chumps[0].data.streak <= 20) {
+    streakStatus = "Recent loss against Monty Balboa";
+  } else if (
+    Math.abs(chumps[0].data.streak - average) <= averageExpectingGateDays
+  ) {
+    streakStatus = "Expecting soon!";
+  } else if (chumps[0].data.streak - average >= 14) {
+    streakStatus = "WAAAAY overdue!!";
+  } else if (chumps[0].data.streak - average >= 7) {
+    streakStatus = "Overdue";
+  } else {
+    streakStatus = "Not expecting";
+  }
+
   return {
     average,
     median,
     max,
     min,
     normalDistribution,
+    streakStatus,
   };
 }
 

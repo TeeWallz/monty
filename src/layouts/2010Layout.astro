@@ -1,0 +1,46 @@
+---
+import DateBar from "../components/DateBar.astro";
+---
+
+<html>
+  <head>
+    <title>How Many Days Since The Montague Street Bridge Has Been Hit?</title>
+    <link rel="stylesheet" href="/css/2010/monty.css" />
+    <link rel="icon" href={"images/favicon.ico"} />
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title="RSS"
+      href={"/rss.xml"}
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+  <body>
+    <main>
+      <DateBar />
+      <div class="section-width">
+        <img class="header-image" src="/images/2010/general/MontyHeader.png" />
+      </div>
+      <slot />
+      <div class="section-width section">
+        <div>
+          <span>Redesign heavily inspired by </span>
+          <a target="_blank" href={"https://hiatus-hiatus.github.io/"}>
+            https://hiatus-hiatus.github.io/
+          </a>
+        </div>
+        <div>
+          <a target="_blank" href={"https://github.com/TeeWallz/monty_balboa"}
+            >View on Github</a
+          >
+        </div>
+        <div>
+          <a target="_blank" href={"/rss.xml"}>RSS Feed</a>
+        </div>
+        <div>
+          <a target="_blank" href={"/chumps.json"}>"""API"""</a>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

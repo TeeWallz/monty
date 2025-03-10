@@ -1,14 +1,5 @@
 ---
-import { Image } from "astro:assets";
-import Layout from "@layouts/Layout_2000.astro";
-import DancingText from "@components/2000/DancingText.astro";
-
-// import { getNewestChump } from "@/utils/chump_calculations";
-// import { ImageMetadata } from "astro/dist/assets/types";
-// import { late } from "astro/zod";
-// const newestChump = await getNewestChump();
-// const images = import.meta.glob<{ default: ImageMetadata }>("/src/content/chumps/images/*.{jpeg,jpg,png,gif}");
-
+import DateBar from "../components/DateBar.astro";
 import { getChumpData } from "@utils/getChumps";
 const chumpData = await getChumpData();
 const newestChump = chumpData.chumps[0];
@@ -46,6 +37,7 @@ const dirname = "/2000";
   >
     <font face="Tahoma" size="2">
       <center>
+        <DateBar />
         <table width="735">
           <tbody>
             <tr>

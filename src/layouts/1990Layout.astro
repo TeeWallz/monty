@@ -1,5 +1,6 @@
 ---
 import Menu from "@components/1990/Menu.astro";
+import DateBar from "../components/DateBar.astro";
 ---
 
 <!doctype html>
@@ -7,7 +8,7 @@ import Menu from "@components/1990/Menu.astro";
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Draggable Layout with 3D Divider</title>
+    <title>How Many Days Since The Montague Street Bridge Has Been Hit?</title>
     <style>
       /* Reset some default styles */
       body,
@@ -88,6 +89,7 @@ import Menu from "@components/1990/Menu.astro";
 
       <!-- Content area -->
       <div class="content">
+        <DateBar />
         <slot />
       </div>
     </div>
