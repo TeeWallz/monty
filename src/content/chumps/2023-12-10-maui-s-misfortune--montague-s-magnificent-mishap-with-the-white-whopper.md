@@ -4,5 +4,5 @@ name_slug: maui-s-misfortune--montague-s-magnificent-mishap-with-the-white-whopp
 date: 2023-12-10
 thanks: Thank you Tom!
 url: https://twitter.com/inn0cntbyst4ndr/status/1734001722006339982
-image: images/2023-12-10.png
+image: /images/chumps/2023-12-10.png
 ---

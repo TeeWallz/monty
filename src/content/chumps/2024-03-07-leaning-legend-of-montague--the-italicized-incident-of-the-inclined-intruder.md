@@ -4,5 +4,5 @@ name_slug: leaning-legend-of-montague--the-italicized-incident-of-the-inclined-i
 date: 2024-03-07
 thanks: Thank you Eamon, Matthew, Nick, Michael, Tipoff, George and Rhys!
 url: https://www.reddit.com/r/melbourne/s/LtBjqvRUi2
-image: images/2024-03-07.png
+image: /images/chumps/2024-03-07.png
 ---

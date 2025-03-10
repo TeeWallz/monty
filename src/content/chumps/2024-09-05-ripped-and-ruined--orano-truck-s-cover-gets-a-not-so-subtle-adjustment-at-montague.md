@@ -4,5 +4,5 @@ name_slug: ripped-and-ruined--orano-truck-s-cover-gets-a-not-so-subtle-adjustmen
 date: 2024-09-05
 thanks: Thank you Harmony!
 url: /
-image: images/2024-09-05.png
+image: /images/chumps/2024-09-05.png
 ---

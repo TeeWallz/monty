@@ -4,5 +4,5 @@ name_slug: thrifty-truck-takes-on-montague-street-bridge--when-blue-became-bruis
 date: 2023-07-07
 thanks: Thank you THOMAS!
 url: https://howmanydayssincemontaguestreetbridgehasbeenhit.com/
-image: images/2023-07-07.jpg
+image: /images/chumps/2023-07-07.jpg
 ---

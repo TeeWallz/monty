@@ -4,5 +4,5 @@ name_slug: public-self-storage-lost-it-s-head
 date: 2021-03-24
 thanks: Thanks Jamison, the Monty Facebook page and Dave !
 url: https://archive.is/MTzgI
-image: images/2021-03-24.jpg
+image: /images/chumps/2021-03-24.jpg
 ---

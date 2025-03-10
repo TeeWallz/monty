@@ -4,5 +4,5 @@ name_slug: junk-jamboree-jolt--the-1800-got-junk---mystery-machine-montague-mix-
 date: 2024-01-24
 thanks: Thank you James
 url: https://howmanydayssincemontaguestreetbridgehasbeenhit.com/
-image: images/2024-01-24-2.png
+image: /images/chumps/2024-01-24-2.png
 ---

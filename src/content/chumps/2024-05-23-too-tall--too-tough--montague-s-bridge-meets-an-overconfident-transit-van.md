@@ -4,5 +4,5 @@ name_slug: too-tall--too-tough--montague-s-bridge-meets-an-overconfident-transit
 date: 2024-05-23
 thanks: Thank you Fabian!
 url: /
-image: images/2024-05-23.jpeg
+image: /images/chumps/2024-05-23.jpeg
 ---

@@ -5,7 +5,6 @@ import type { Chump } from "../../../utils/getChumps";
 // above but typed
 const { chump } = Astro.props;
 // images[`/src/content/chumps/${chump.data.image}`]()
-const image = "";
 ---
 
 <tr>
@@ -19,8 +18,14 @@ const image = "";
     align="center"
     valign="middle"
     ><!--mstheme-->
-    <font face="arial, helvetica"> <!--mstheme--></font></td
-  >
+    <font face="arial, helvetica"> <!--mstheme--></font>
+    <img
+      src={chump.data.image}
+      alt={chump.data.name}
+      width="150"
+      height="150"
+    />
+  </td>
   <td
     width="442"
     bordercolor="#000080"

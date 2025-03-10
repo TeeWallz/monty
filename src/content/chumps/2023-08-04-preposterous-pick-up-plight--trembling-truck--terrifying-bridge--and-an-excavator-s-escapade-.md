@@ -4,5 +4,5 @@ name_slug: preposterous-pick-up-plight--trembling-truck--terrifying-bridge--and-
 date: 2023-08-04
 thanks: Thank you Nick as always!
 url: https://howmanydayssincemontaguestreetbridgehasbeenhit.com/
-image: images/2023-08-04.jpg
+image: /images/chumps/2023-08-04.jpg
 ---
