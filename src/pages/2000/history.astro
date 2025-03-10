@@ -1,0 +1,65 @@
+---
+import { Image } from "astro:assets";
+import Layout from "@layouts/Layout_2000.astro";
+import DancingText from "@components/2000/DancingText.astro";
+
+import { getChumpData } from "@utils/getChumps";
+const chumpData = await getChumpData();
+---
+
+<Layout>
+  <style>
+    table.bordered {
+      border-collapse: collapse;
+    }
+    table.bordered td,
+    table.bordered th {
+      border: 1px solid #0047bd;
+    }
+  </style>
+  <table width="85%" cellpadding="5">
+    <tbody>
+      <tr>
+        <td width="100%">
+          <p>
+            <font face="Tahoma" size="5"> History </font>
+          </p>
+
+          <p>
+            <table class="bordered">
+              <thead>
+                <tr>
+                  <th class="px-4 py-2">Image</th>
+                  <th class="px-4 py-2">Name</th>
+                  <th class="px-4 py-2">Date</th>
+                </tr>
+              </thead>
+              <tbody
+                style="border: 1px solid #FFFFFF; border-collapse: collapse;"
+              >
+                {
+                  chumpData.chumps.map(chump => (
+                    <tr style="border: 1px solid #FFFFFF;">
+                      <td class="px-4 py-2">
+                        <img
+                          src={chump.data.image}
+                          alt={chump.data.name}
+                          width="60"
+                        />
+                      </td>
+                      <td class="border px-4 py-2">{chump.data.name}</td>
+                      <td class="border px-4 py-2">
+                        {chump.data.localisedDate}
+                      </td>
+                    </tr>
+                  ))
+                }
+              </tbody>
+            </table>
+          </p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</Layout>
+

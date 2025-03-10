@@ -1,0 +1,64 @@
+---
+import removeTrailingSlash from "@/utils/removeTrailingSlash";
+const pathname = removeTrailingSlash(Astro.url.pathname);
+---
+
+<div id="left-hand-menu" class="left-hand-menu cute-border">
+  <h2 class="menu_header">Menu</h2>
+
+  <hr />
+  <nav role="navigation" style="">
+    <ul role="list" class="">
+      <li style="">
+        <a
+          href="/"
+          class:list={{
+            ["hover:text-amber-500"]: true,
+            ["text-black"]: pathname === "/",
+          }}
+        >
+          <img src="/images/general/home3.gif" alt="home" style="" />
+        </a>
+      </li>
+      <li style="">
+        <a
+          href="/about"
+          class:list={{
+            ["hover:text-amber-500"]: true,
+            ["text-black"]: pathname === "/about",
+          }}
+        >
+          <img src="/images/general/about.gif" alt="about" style="" />
+        </a>
+      </li>
+      <li>
+        <li style="">
+          <a
+            href="/history"
+            class:list={{
+              ["hover:text-amber-500"]: true,
+              ["text-black"]: pathname === "/history",
+            }}
+          >
+            <img
+              src="/images/general/fzghistorygif.gif"
+              alt="history"
+              style=""
+            />
+          </a>
+        </li>
+        <li>
+          <a
+            href="/"
+            class:list={{
+              ["hover:text-amber-500"]: true,
+              ["text-black"]: pathname === "/",
+            }}
+          >
+            <img src="/images/general/stats_28929.gif" alt="history" style="" />
+          </a>
+        </li>
+      </li>
+    </ul>
+  </nav>
+</div>

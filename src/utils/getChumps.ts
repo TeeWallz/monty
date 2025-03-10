@@ -77,16 +77,9 @@ export async function getChumpData(): Promise<ChumpData> {
       month: "2-digit",
       year: "numeric",
     });
-
-    chumps[i] = {
-      ...chumps[i],
-      ...{
-        id: chumps[i].data.name_slug,
-        streak,
-        localisedDate,
-        dateBasic,
-      },
-    };
+    chumps[i].data.streak = streak;
+    chumps[i].data.localisedDate = localisedDate;
+    chumps[i].data.dateBasic = dateBasic;
   }
 
   const stats = calculateChumpStatistics(chumps);

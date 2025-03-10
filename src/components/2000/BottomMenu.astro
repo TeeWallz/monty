@@ -1,0 +1,91 @@
+---
+import removeTrailingSlash from "@/utils/removeTrailingSlash";
+const pathname = removeTrailingSlash(Astro.url.pathname);
+---
+
+<div class="center-everything cute-border" style="flex-direction: column">
+  <footer class="footer_menu">
+    <nav role="navigation" style="">
+      <ul role="list" class="">
+        <li style="">
+          <a
+            href="/"
+            class:list={{
+              ["hover:text-amber-500"]: true,
+              ["text-black"]: pathname === "/",
+            }}
+          >
+            <img
+              src="/images/general/home3.gif"
+              alt="home"
+              class="rotate-element"
+            />
+          </a>
+        </li>
+        <li style="">
+          <a
+            href="/history"
+            class:list={{
+              ["hover:text-amber-500"]: true,
+              ["text-black"]: pathname === "/history",
+            }}
+          >
+            <img
+              src="/images/general/fzghistorygif.gif"
+              alt="history"
+              class="rotate-element"
+            />
+          </a>
+        </li>
+        <li>
+          <a
+            href="/about"
+            class:list={{
+              ["hover:text-amber-500"]: true,
+              ["text-black"]: pathname === "/",
+            }}
+          >
+            <img
+              src="/images/general/about.gif"
+              alt="about"
+              style="height: 100%;"
+              class="rotate-element"
+            />
+          </a>
+        </li>
+        <li>
+          <a
+            href="/"
+            class:list={{
+              ["hover:text-amber-500"]: true,
+              ["text-black"]: pathname === "/",
+            }}
+          >
+            <img
+              src="/images/general/stats_28929.gif"
+              alt="history"
+              class="rotate-element"
+            />
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </footer>
+  <a href="https://www.free-website-hit-counter.com">
+    <img
+      src="https://www.free-website-hit-counter.com/zc.php?d=9&id=2412&s=2"
+      alt="Free Website Hit Counter"
+    />
+  </a>
+
+  <br />
+  <br />
+  <small>
+    <a
+      href="https://www.free-website-hit-counter.com"
+      title="Free Website Hit Counter"
+    >
+      Free website hit counter
+    </a>
+  </small>
+</div>

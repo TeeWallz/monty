@@ -1,0 +1,396 @@
+---
+import { Image } from "astro:assets";
+import Layout from "@layouts/Layout_2000.astro";
+import DancingText from "@components/2000/DancingText.astro";
+
+// import { getNewestChump } from "@/utils/chump_calculations";
+// import { ImageMetadata } from "astro/dist/assets/types";
+// import { late } from "astro/zod";
+// const newestChump = await getNewestChump();
+// const images = import.meta.glob<{ default: ImageMetadata }>("/src/content/chumps/images/*.{jpeg,jpg,png,gif}");
+
+import { getChumpData } from "@utils/getChumps";
+const chumpData = await getChumpData();
+const newestChump = chumpData.chumps[0];
+
+const dirname = "/2000";
+---
+
+<html>
+  <head>
+    <style type="text/css">
+      embed {
+        display: none;
+      }
+    </style>
+    <title>How Many Days Since The Montague Street Bridge Has Been Hit?</title>
+    <meta name="Keywords" content="TODO,TODO" />
+    <meta name="Description" content="TODO" />
+    <meta name="Author" content="TODO" />
+    <style type="text/css">
+      BODY {
+        scrollbar-base-color: 000000;
+        scrollbar-arrow-color: 0047BE;
+        scrollbar-darkshadow-color: 000000;
+        scrollbar-highlight-color: 0047BE;
+      }
+    </style>
+  </head>
+
+  <body
+    background="/images/2000/bg_hexgrid.jpg"
+    bgcolor="000000"
+    text="889988"
+    link="999999"
+    vlink="889988"
+  >
+    <font face="Tahoma" size="2">
+      <center>
+        <table width="735">
+          <tbody>
+            <tr>
+              <td width="100%" bgcolor="0047BE" align="center">
+                <table width="100%" cellpadding="0" cellspacing="0">
+                  <tbody>
+                    <tr>
+                      <td background="/images/2000/blueline_x1.jpg" height="8"
+                      ></td>
+                    </tr>
+                  </tbody>
+                </table>
+
+                <table width="100%" cellpadding="0" cellspacing="0">
+                  <tbody>
+                    <tr>
+                      <td width="133"
+                        ><img src="/images/2000/top_sui2.jpg" /></td
+                      >
+                      <td width="468"
+                        ><img
+                          src="/images/2000/banner02.jpg"
+                          alt="NAVI Online"
+                        /></td
+                      >
+                      <td width="133"
+                        ><img src="/images/2000/top_sou2.jpg" /></td
+                      >
+                    </tr>
+                  </tbody>
+                </table>
+
+                <table width="100%" cellpadding="0" cellspacing="0">
+                  <tbody>
+                    <tr>
+                      <td background="/images/2000/blueline_x2.jpg" height="1"
+                      ></td>
+                    </tr>
+                  </tbody>
+                </table>
+
+                <table width="100%" cellpadding="0" cellspacing="0">
+                  <tbody>
+                    <tr>
+                      <td background="/images/2000/blueline_x1.jpg" height="8"
+                      ></td>
+                    </tr>
+                  </tbody>
+                </table>
+
+                <table width="100%" cellpadding="0" cellspacing="0">
+                  <tbody>
+                    <tr>
+                      <td
+                        width="184"
+                        align="center"
+                        valign="top"
+                        bgcolor="000000"
+                      >
+                        <br />
+                        <table width="99%" cellpadding="0" cellspacing="0">
+                          <tbody>
+                            <tr>
+                              <td
+                                ><img
+                                  src="/images/2000/tabletop_left.jpg"
+                                /></td
+                              >
+                              <td
+                                width="100%"
+                                background="/images/2000/tabletop_center.jpg"
+                                ><b>
+                                  <font face="Tahoma" color="FFFFFF">Main</font>
+                                </b></td
+                              >
+                              <td
+                                ><img
+                                  src="/images/2000/tabletop_right.jpg"
+                                /></td
+                              >
+                            </tr>
+                          </tbody>
+                        </table>
+                        <table width="90%" cellpadding="5">
+                          <tbody>
+                            <tr>
+                              <td width="100%">
+                                <font face="Tahoma" size="1">
+                                  <a href=`${dirname}/`>Latest Chump</a><br />
+                                  <a href=`${dirname}/about`>About Monty</a><br
+                                  />
+                                  <a href=`${dirname}/history`>History</a><br />
+                                  <a href=`${dirname}/stats`>Stats</a><br />
+                                </font>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+
+                        <table width="100%" cellpadding="0" cellspacing="0">
+                          <tbody>
+                            <tr>
+                              <td
+                                background="/images/2000/blueline_x3.jpg"
+                                height="9"></td>
+                            </tr>
+                          </tbody>
+                        </table>
+
+                        <table width="99%" cellpadding="0" cellspacing="0">
+                          <tbody>
+                            <tr>
+                              <td
+                                ><img
+                                  src="/images/2000/tabletop_left.jpg"
+                                /></td
+                              >
+                              <td
+                                width="100%"
+                                background="/images/2000/tabletop_center.jpg"
+                                ><b>
+                                  <font face="Tahoma" color="FFFFFF"
+                                    >Articles and junk</font
+                                  >
+                                </b></td
+                              >
+                              <td
+                                ><img
+                                  src="/images/2000/tabletop_right.jpg"
+                                /></td
+                              >
+                            </tr>
+                          </tbody>
+                        </table>
+                        <table width="90%" cellpadding="5">
+                          <tbody>
+                            <tr>
+                              <td width="100%">
+                                <font face="Tahoma" size="1">
+                                  <a
+                                    href="https://www.youtube.com/watch?v=HR7NivKqfzo"
+                                    >Why Do Trucks Keep Smashing Into This
+                                    Bridge?</a
+                                  ><br />
+                                  <a
+                                    href="https://www.youtube.com/watch?v=jaUo1KXIU1k"
+                                    >Montague st Bridge by David Cosma</a
+                                  ><br />
+                                </font>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+
+                        <table width="100%" cellpadding="0" cellspacing="0">
+                          <tbody>
+                            <tr>
+                              <td
+                                background="/images/2000/blueline_x3.jpg"
+                                height="9"></td>
+                            </tr>
+                          </tbody>
+                        </table>
+
+                        <table width="99%" cellpadding="0" cellspacing="0">
+                          <tbody>
+                            <tr>
+                              <td
+                                ><img
+                                  src="/images/2000/tabletop_left.jpg"
+                                /></td
+                              >
+                              <td
+                                width="100%"
+                                background="/images/2000/tabletop_center.jpg"
+                                ><b>
+                                  <font face="Tahoma" color="FFFFFF"
+                                    >Extras</font
+                                  >
+                                </b></td
+                              >
+                              <td
+                                ><img
+                                  src="/images/2000/tabletop_right.jpg"
+                                /></td
+                              >
+                            </tr>
+                          </tbody>
+                        </table>
+                        <table width="90%" cellpadding="5">
+                          <tbody>
+                            <tr>
+                              <td width="100%">
+                                <font face="Tahoma" size="1">
+                                  <a href="/1990/cool_pix">Cool Pictures</a><br
+                                  />
+                                  <a href="/1990/mycats">My Cats</a><br />
+                                  <a href="/1990/wpaper">Wallpapers</a><br />
+                                </font>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+
+                        <table width="100%" cellpadding="0" cellspacing="0">
+                          <tbody>
+                            <tr>
+                              <td
+                                background="/images/2000/blueline_x3.jpg"
+                                height="9"></td>
+                            </tr>
+                          </tbody>
+                        </table>
+
+                        <table width="99%" cellpadding="0" cellspacing="0">
+                          <tbody>
+                            <tr>
+                              <td
+                                ><img
+                                  src="/images/2000/tabletop_left.jpg"
+                                /></td
+                              >
+                              <td
+                                width="100%"
+                                background="/images/2000/tabletop_center.jpg"
+                                ><b>
+                                  <font face="Tahoma" color="FFFFFF"
+                                    >Contact</font
+                                  >
+                                </b></td
+                              >
+                              <td
+                                ><img
+                                  src="/images/2000/tabletop_right.jpg"
+                                /></td
+                              >
+                            </tr>
+                          </tbody>
+                        </table>
+                        <table width="90%" cellpadding="5">
+                          <tbody>
+                            <tr>
+                              <td width="100%">
+                                <font face="Tahoma" size="1">
+                                  <a
+                                    href="https://www.ultraguest.com/view/1734986805"
+                                    >Sign Guestbook</a
+                                  ><br />
+                                  <a
+                                    href="https://www.ultraguest.com/view/1734986805"
+                                    >View Guestbook</a
+                                  ><br />
+                                </font>
+                                <p>
+                                  <font face="Tahoma" size="1">
+                                    <a
+                                      href="mailto:montybalboacontact@gmail.com"
+                                      >montybalboacontact@gmail.com</a
+                                    >
+                                  </font>
+                                </p>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+
+                        <table width="100%" cellpadding="0" cellspacing="0">
+                          <tbody>
+                            <tr>
+                              <td
+                                background="/images/2000/blueline_x3.jpg"
+                                height="9"></td>
+                            </tr>
+                          </tbody>
+                        </table>
+
+                        <center>
+                          <a href="http://www.clone-army.org/"
+                            ><img
+                              src="/images/2000/buttons/clonemanga.jpg"
+                              border="0"
+                            /></a
+                          ><br />
+                          <a href="http://www.aoinanase.gr.jp/"
+                            ><img
+                              src="/images/2000/buttons/sh_aoi.gif"
+                              border="0"
+                            /></a
+                          ><br />
+                          <a href="http://www.moeboard.net"
+                            ><img
+                              src="/images/2000/buttons/moe.gif"
+                              border="0"
+                            /></a
+                          ><br />
+                        </center>
+                      </td>
+
+                      <td
+                        width="1"
+                        bgcolor="000000"
+                        background="/images/2000/blueline_y1.jpg"
+                      >
+                      </td>
+                      <td
+                        width="550"
+                        align="center"
+                        valign="top"
+                        bgcolor="000000"
+                      >
+                        <table width="500" cellpadding="10" cellspacing="0">
+                          <tbody>
+                            <tr>
+                              <td width="299" align="center">
+                                <font face="Tahoma" size="2">
+                                  Last Updated:<br />
+                                  {newestChump.data.localisedDate}
+                                </font>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+
+                        <table width="100%" cellpadding="0" cellspacing="0">
+                          <tbody>
+                            <tr>
+                              <td
+                                background="/images/2000/blueline_x2.jpg"
+                                height="1"></td>
+                            </tr>
+                          </tbody>
+                        </table>
+
+                        <br />
+
+                        <slot />
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </center>
+    </font>
+  </body>
+</html>

@@ -1,0 +1,62 @@
+---
+import { Image } from "astro:assets";
+import Layout from "@layouts/Layout_2000.astro";
+import DancingText from "@components/2000/DancingText.astro";
+import { getChumpData } from "@utils/getChumps";
+const chumpData = await getChumpData();
+---
+
+<Layout>
+  <table width="85%" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td><img src="/images/2000/tabletop_left.jpg" /></td>
+        <td
+          width="100%"
+          align="right"
+          background="/images/2000/tabletop_center.jpg"
+          ><b>
+            <font color="FFFFFF">{chumpData.chumps[0].data.dateBasic}</font>
+          </b></td
+        >
+        <td><img src="/images/2000/tabletop_right.jpg" /></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <table width="85%" cellpadding="5">
+    <tbody>
+      <tr>
+        <td width="100%">
+          <p>
+            <font face="Tahoma" size="6">
+              <span>
+                {chumpData.chumps[0].data.streak} days ago!
+              </span>
+            </font>
+          </p>
+
+          <p>
+            <font face="Tahoma" size="4">
+              <a href={`/2000/chump/${chumpData.chumps[0].id}`}>
+                <span>
+                  {chumpData.chumps[0].data.name}
+                </span>
+              </a>
+            </font>
+          </p>
+
+          <font face="Tahoma" size="1">
+            <p>
+              <img
+                src={chumpData.chumps[0].data.image}
+                alt={chumpData.chumps[0].data.name}
+                width="400"
+              />
+            </p>
+          </font>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</Layout>
