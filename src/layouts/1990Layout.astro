@@ -10,71 +10,7 @@ import DateBar from "../components/DateBar.astro";
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>How Many Days Since The Montague Street Bridge Has Been Hit?</title>
     <style>
-      /* Reset some default styles */
-      body,
-      html {
-        margin: 0;
-        padding: 0;
-        height: 100%;
-        font-family: Arial, sans-serif;
-      }
 
-      /* Container for the layout */
-      .container {
-        display: flex;
-        height: 100vh; /* Full viewport height */
-      }
-
-      /* Menu on the left */
-      .menu {
-        width: 200px; /* Initial width */
-        background-color: #333;
-        color: white;
-        padding: 20px;
-        box-sizing: border-box;
-        overflow-x: hidden;
-      }
-
-      .menu h2 {
-        margin-top: 0;
-      }
-
-      .menu ul {
-        list-style-type: none;
-        padding: 0;
-      }
-
-      .menu ul li {
-        margin: 15px 0;
-      }
-
-      .menu ul li a {
-        color: white;
-        text-decoration: none;
-      }
-
-      .menu ul li a:hover {
-        text-decoration: underline;
-      }
-
-      /* Draggable divider with 3D look */
-      .divider {
-        width: 8px; /* Width of the divider */
-        background-color: #ccc; /* Base grey color */
-        cursor: ew-resize; /* Cursor indicates horizontal resizing */
-        border-left: 2px solid #fff; /* Light edge for raised effect */
-        border-right: 2px solid #999; /* Dark edge for shadow effect */
-        box-shadow: inset -1px 0 2px rgba(0, 0, 0, 0.1); /* Inner shadow for depth */
-      }
-
-      /* Content area */
-      .content {
-        flex-grow: 1; /* Takes up remaining space */
-        padding: 20px;
-        box-sizing: border-box;
-        background-color: #f4f4f4;
-        overflow: auto; /* Adds scrollbars if content overflows */
-      }
     </style>
   </head>
   <body>
@@ -88,8 +24,8 @@ import DateBar from "../components/DateBar.astro";
       <div class="divider" id="divider"></div>
 
       <!-- Content area -->
-      <div class="content">
-        <DateBar />
+      <div class="layout_content">
+        <!-- <DateBar /> -->
         <slot />
       </div>
     </div>
