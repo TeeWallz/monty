@@ -23,9 +23,8 @@ const backgroundImages = JSON.parse(
             Math.random() * backgroundImages.length
           );
           // debugger;
-          this.backgroundElement =
-            window.frames["window"].document.getElementsByClassName(
-              "content"
+          this.backgroundElement = document.getElementsByClassName(
+              "layout_content"
             )[0];
           console.log("backgroundElement", this.backgroundElement);
           this.setupEventListeners();
