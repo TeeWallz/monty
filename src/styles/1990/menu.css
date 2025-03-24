@@ -2,7 +2,7 @@
     /* background: "/images/1990/pinksnowman.gif */
     background: url('/images/1990/pinksnowman.gif') repeat;
     overflow-x: hidden;
-    width: 100%;
+    /* width: 100%; */
 }
 
 .menu_wrapper {
