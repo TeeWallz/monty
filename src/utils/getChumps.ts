@@ -1,65 +1,18 @@
-import type { CollectionEntry } from "astro:content";
-import postFilter from "./postFilter";
-import { z, defineCollection, getCollection } from "astro:content";
-
-export const ChumpDataZod = z.object({
-  id: z.string(),
-  name: z.string(),
-  name_slug: z.string(),
-  thanks: z.string().nullable(),
-  url: z.string(),
-  date: z.date(),
-  dateBasic: z.string(),
-  date_chump: z.number(),
-  streak: z.number(),
-  localisedDate: z.string(),
-  image: z.string(),
-  streak_max_proportion: z.number(),
-});
-export const ChumpZod = z.object({
-  id: z.string(),
-  slug: z.string(),
-  body: z.string(),
-  collection: z.literal("chumps"),
-  data: ChumpDataZod,
-});
-export const statsZod = z.object({
-  average: z.number(),
-  median: z.number(),
-  max: z.number(),
-  min: z.number(),
-  normalDistribution: z.array(
-    z.object({
-      x: z.number(),
-      y: z.number(),
-    })
-  ),
-  streakStatus: z.string(),
-});
-export type ChumpSingleData = z.infer<typeof ChumpDataZod>;
-export type Chump = z.infer<typeof ChumpZod>;
-export type ChumpStats = z.infer<typeof statsZod>;
-export type ChumpsByYearMap = Map<number, Chump[]>;
-export type ChumpsByYearWeekMap = Map<number, Map<number, Chump[]>>;
-export interface ChumpYear {
-  year: number;
-  chumps: Chump[];
-}
-
-export interface ChumpData {
-  chumps: Chump[];
-  stats: ChumpStats;
-  chumpsByYear: ChumpYear[];
-  chumpsByYearMap: ChumpsByYearMap;
-  chumpsByYearWeek: ChumpsByYearWeekMap;
-}
+import { z, getCollection } from "astro:content";
+import fs from "fs";
+import matter from "gray-matter";
+import path from "path";
+import { date } from "astro/zod";
 
 export async function getChumpData(): Promise<ChumpData> {
   let chumps: Chump[] = await getCollection("chumps");
+  return enrichChumpData(chumps);
+}
+
+export async function enrichChumpData(chumps: Chump[]): Promise<ChumpData> {
   chumps = chumps.sort((a, b) => {
     return (
-      new Date(b.data.date).getTime() - new Date(a.data.date).getTime() ||
-      b.data.date_chump - a.data.date_chump
+      new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
     );
   });
   // perform a lag and lead difference the ccurrent chump date and the previous chump date

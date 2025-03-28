@@ -13,5 +13,9 @@
       "@styles/*": ["styles/*"],
       "@utils/*": ["utils/*"],
     },
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "target": "esnext",
+    "types": ["astro/client"]
   },
 }

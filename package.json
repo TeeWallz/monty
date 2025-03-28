@@ -5,8 +5,10 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro build && jampack ./dist",
+    "build": "npm run generate:chumps && astro build && jampack ./dist",
     "preview": "astro preview",
+    "generate:chumps": "tsx src/scripts/create_json.ts",
+    "prebuild": "npm run generate:chumps",
     "sync": "astro sync",
     "astro": "astro",
     "format:check": "prettier --check . --plugin=prettier-plugin-astro",
@@ -15,6 +17,7 @@
     "prepare": "husky install",
     "lint": "eslint ."
   },
+  "type": "module",
   "dependencies": {
     "@astrojs/check": "^0.4.1",
     "@astrojs/rss": "^4.0.2",
@@ -26,8 +29,7 @@
     "remark-collapse": "^0.1.2",
     "remark-toc": "^9.0.0",
     "satori": "^0.10.11",
-    "tailwindcss": "^3.4.1",
-    "typescript": "^5.3.3"
+    "tailwindcss": "^3.4.1"
   },
   "devDependencies": {
     "@astrojs/react": "^3.0.9",
@@ -49,7 +51,9 @@
     "prettier-plugin-astro": "^0.13.0",
     "prettier-plugin-tailwindcss": "^0.5.11",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "tsx": "^4.19.3",
+    "typescript": "^5.8.2"
   },
   "config": {
     "commitizen": {
