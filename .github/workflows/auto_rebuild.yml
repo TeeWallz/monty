@@ -1,0 +1,14 @@
+# github scheduled action to run curl -X POST "https://api.cloudflare.com/client/v4/pages/webhooks/deploy_hooks/7d58b774-8b67-4338-bbe5-310ec22ae981" every day at midnight aedt
+name: Auto Rebuild
+
+on:
+  schedule:
+    - cron: '0 14 * * *'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy
+        run: curl -X POST "https://api.cloudflare.com/client/v4/pages/webhooks/deploy_hooks/7d58b774-8b67-4338-bbe5-310ec22ae981"
