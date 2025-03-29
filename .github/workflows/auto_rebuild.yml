@@ -4,6 +4,8 @@ name: Auto Rebuild
 on:
   schedule:
     - cron: '0 14 * * *'
+  workflow_dispatch:
+
 
 jobs:
   build:
