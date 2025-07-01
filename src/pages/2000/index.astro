@@ -37,7 +37,7 @@ const chumpData = await getChumpData();
 
           <p>
             <font face="Tahoma" size="4">
-              <a href={`/2000/chump/${chumpData.chumps[0].id}`}>
+              <a href={chumpData.chumps[0].data.url} target="_blank">
                 <span>
                   {chumpData.chumps[0].data.name}
                 </span>
