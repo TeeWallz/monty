@@ -1,0 +1,40 @@
+<link title="timeline-styles" rel="stylesheet" 
+              href="https://cdn.knightlab.com/libs/timeline3/latest/css/timeline.css">
+
+<script src="https://cdn.knightlab.com/libs/timeline3/latest/js/timeline.js" is:inline></script>
+
+hi!
+
+<div id='timeline-embed' style="width: 100%; height: 600px"></div>
+
+ <script type="text/javascript" is:inline>
+    // Wait for DOM and external script to be loaded before initializing Timeline
+    window.addEventListener('DOMContentLoaded', function () {
+      function initTimeline() {
+        console.log('Attempting to initialize Timeline');
+        if (typeof TL !== 'undefined' && typeof TL.Timeline !== 'undefined') {
+            console.log('Timeline library is available');
+            // Fetch JSON data from the provided URL and initialize Timeline
+            fetch('timeline.json')
+              .then(response => {
+                if (!response.ok) throw new Error('Network response was not ok');
+                return response.json();
+              })
+              .then(timeline_json => {
+                  var options = {
+                    hash_bookmark: false,
+                    initial_zoom: 4,
+                    timenav_height_percentage: 40
+                  }
+                window.timeline = new TL.Timeline('timeline-embed', timeline_json, options);
+              })
+              .catch(error => {
+                console.error('Failed to load timeline data:', error);
+              });
+        } else {
+          setTimeout(initTimeline, 100);
+        }
+      }
+      initTimeline();
+    });
+</script>

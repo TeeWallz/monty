@@ -240,7 +240,7 @@ header {
     position: absolute;
     width: 40%;
     bottom: 0;
-    z-index: 100;
+    /* z-index: 100; */
 }
 
 .candle-left {
@@ -346,131 +346,107 @@ th {
     cursor: pointer;
 }
 
-    /* Chart Rows */
-    .chart-rows {
-        margin-bottom: 7px;
-        flex-wrap: nowrap;
-        margin-top: 0;
-        flex-direction: row;
-    }
+/* Timeline Container */
+.timeline-section {
+  position: relative;
+  width: 100%;
+  max-width: var(--section-width);
+  margin: 0 auto;
+  height: 600px; /* Default height */
+}
 
-    @media (min-width: 960px) {
-        .chart-rows {
-            display: flex;
-            flex-direction: row;
-            flex-wrap: nowrap;
-            margin-top: 0;
-        }
-    }
+/* Wrapper element */
+.timeline-outer {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
 
-    /* Year */
-    .year {
-        margin-top: 0;
-        margin-bottom: 0;
-        padding: 0;
-        margin-right: 8px;
-        font-size: 2.5vw;
-        width: 420px;
-        max-width: 3em;
-    }
+/* Fullscreen state */
+.timeline-fullscreen {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  z-index: 1; /* Maximum z-index */
+  background: white;
+  margin: 0 !important;
+  animation: expand 0.4s cubic-bezier(0.2, 0.9, 0.3, 1.1) forwards;
+}
 
-    /* Hit List */
-    .hit-list {
-        flex-wrap: wrap;
-        display: flex;
-    }
+@keyframes expand {
+  0% {
+    clip-path: inset(10% 20% 10% 20%);
+    opacity: 0.8;
+  }
+  100% {
+    clip-path: inset(0 0 0 0);
+    opacity: 1;
+  }
+}
 
-    /* Hit Box */
-    .hit-box {
-        background: grey;
-        margin-right: 1px;
-        margin-left: 1px;
-        margin-bottom: 2px;
-        font-size: 0.1em;
-        width: 18px;
-        height: 17px;
-        cursor: pointer;
-    }
+.timeline-toggle-wrapper {
+    /* position: relative; */
+    width: 100%;
+    display: flex;
+    justify-content: flex-end; 
+    /* margin-bottom: -40px; */
+}
 
-    @media (min-width: 960px) {
-        .hit-box {
-            width: 18px;
-            height: 17px;
-        }
-    }
+/* Toggle Button */
+.timeline-toggle {
+  /* position: absolute; */
+  top: -40px;
+  right: 0;
+  z-index: 2;
+  background: rgba(0,0,0,0.7);
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  /* float: right; */
+}
 
-    /* Hit Box Colors */
-    .hit-box-double-kill {
-        background-color: #6f110b;
-    }
+.timeline-toggle-fullscreen {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 6; /* Maximum z-index */
+}
 
-    .hit-box-hit {
-        background-color: #f44336;
-    }
+.timeline-toggle:hover {
+  background: rgba(0,0,0,0.9);
+  transform: scale(1.05);
+}
 
-    .hit-box-safe {
-        background-color: #33b5e5;
-    }
+/* Close Button - Fixed to top-right */
+.timeline-close {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 2147483647; /* Maximum z-index */
+  background: rgba(0,0,0,0.7);
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  font-family: inherit;
+}
 
-    /* Tooltip */
-    .tooltip {
-        position: relative;
-        display: inline-block;
-    }
+.timeline-fullscreen .timeline-close {
+  opacity: 1;
+  pointer-events: all;
+}
 
-    .tooltip .tooltip-text {
-        visibility: hidden;
-        width: 120px;
-        background-color: black;
-        color: white;
-        text-align: center;
-        border-radius: 5px;
-        padding: 5px;
-        position: absolute;
-        z-index: 1;
-        bottom: 125%;
-        left: 50%;
-        margin-left: -60px;
-        opacity: 0;
-        transition: opacity 0.3s;
-    }
-
-    .tooltip:hover .tooltip-text {
-        visibility: visible;
-        opacity: 1;
-    }
-
-        /* Bar Chart Styles */
-        .bar-chart {
-            display: flex;
-            align-items: flex-end;
-            justify-content: space-between;
-            width: 90%;
-            height: 100px;
-            margin-top: 20px;
-        }
-    
-        .bar {
-            flex: 1;
-            background-color: #DACFBB;
-            margin: 0 2px;
-            border-radius: 5px;
-            position: relative;
-        }
-    
-        .bar-label {
-            position: absolute;
-            bottom: -20px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 0.8em;
-            color: #333;
-        }
-    
-        .x-axis-label {
-            text-align: center;
-            margin-top: 10px;
-            font-size: 0.9em;
-            color: #333;
-        }
-        
+/* The actual timeline element */
+#timeline-embed {
+  width: 100%;
+  height: 100%;
+}
