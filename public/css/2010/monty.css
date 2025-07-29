@@ -240,7 +240,7 @@ header {
     position: absolute;
     width: 40%;
     bottom: 0;
-    z-index: 100;
+    /* z-index: 100; */
 }
 
 .candle-left {
