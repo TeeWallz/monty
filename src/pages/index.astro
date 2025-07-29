@@ -16,6 +16,43 @@ const cooLinks = [
 ];
 ---
 
+<link title="timeline-styles" rel="stylesheet" 
+              href="https://cdn.knightlab.com/libs/timeline3/latest/css/timeline.css">
+
+<script src="https://cdn.knightlab.com/libs/timeline3/latest/js/timeline.js" is:inline></script>
+
+<script type="text/javascript" is:inline>
+    // Wait for DOM and external script to be loaded before initializing Timeline
+    window.addEventListener('DOMContentLoaded', function () {
+      function initTimeline() {
+        console.log('Attempting to initialize Timeline');
+        if (typeof TL !== 'undefined' && typeof TL.Timeline !== 'undefined') {
+            console.log('Timeline library is available');
+            // Fetch JSON data from the provided URL and initialize Timeline
+            fetch('timeline.json')
+              .then(response => {
+                if (!response.ok) throw new Error('Network response was not ok');
+                return response.json();
+              })
+              .then(timeline_json => {
+                  var options = {
+                    hash_bookmark: false,
+                    initial_zoom: 4,
+                    timenav_height_percentage: 40
+                  }
+                window.timeline = new TL.Timeline('timeline-embed', timeline_json, options);
+              })
+              .catch(error => {
+                console.error('Failed to load timeline data:', error);
+              });
+        } else {
+          setTimeout(initTimeline, 100);
+        }
+      }
+      initTimeline();
+    });
+</script>
+
 <Layout>
   <!-- Day Counter -->
   <div class="section section-width">
@@ -123,166 +160,85 @@ const cooLinks = [
       </div>
     </div>
   </div>
+  <!-- Timeline -->
 
-  <!-- History -->
-
-  <div class="section section-width">
-    <img src="/images/2010/general/rainhistory.gif" />
-
-    <table>
-      <thead>
-        <tr>
-          <th>Date</th>
-          <th>Chump</th>
-          <th>Streak</th>
-          <th>Link</th>
-          <th>Image</th>
-        </tr>
-      </thead>
-      <tbody>
-        {
-          chumpData.chumps.map((chump, index) => (
-            <tr>
-              <td>{chump.data.localisedDate}</td>
-
-              <td>
-                <div style="cursor: pointer;">
-                  <div style="font-size: 1em;">{chump.data.name}</div>
-                  <div class="thanks-text">{chump.data.thanks}</div>
-                </div>
-              </td>
-
-              <td>
-                <div
-                  class="streak-bar"
-                  style={`width: ${chump.data.streak_max_proportion * 100}%`}
-                >
-                  {chump.data.streak}
-                </div>
-              </td>
-
-              <td>
-                <span
-                  class="chump-link"
-                  onClick={() =>
-                    window.open(chump!.data!.url, "_blank").focus()
-                  }
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    fill="currentColor"
-                    viewBox="0 0 16 16"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"
-                    />
-                    <path
-                      fill-rule="evenodd"
-                      d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"
-                    />
-                  </svg>
-                </span>
-              </td>
-
-              <td>
-                <span
-                  class="image-button"
-                  onClick={() =>
-                    setLightboxData({
-                      lightboxIsOpen: true,
-                      lightboxCurrentChumpId: index,
-                    })
-                  }
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    fill="currentColor"
-                    viewBox="0 0 16 16"
-                  >
-                    <path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
-                    <path d="M2.002 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2h-12zm12 1a1 1 0 0 1 1 1v6.5l-3.777-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12V3a1 1 0 0 1 1-1h12z" />
-                  </svg>
-                </span>
-              </td>
-            </tr>
-          ))
-        }
-      </tbody>
-    </table>
+<!-- History Section -->
+<div class="section section-width">
+  <div class="timeline-section">
+    <div class="timeline-toggle-wrapper">
+    <button id="timeline-toggle" class="timeline-toggle">View Fullscreen</button>
+    </div>
+    <div class="timeline-outer">
+      <div id="timeline-embed"></div>
+    </div>
+    <button id="timeline-close" class="timeline-close">✕ Close</button>
   </div>
+</div>
+  
+<script is:inline>
+document.addEventListener('DOMContentLoaded', function() {
+  // Initialize timeline
+  const initTimeline = () => {
+    if (typeof TL !== 'undefined') {
+      fetch('timeline.json')
+        .then(response => response.json())
+        .then(data => {
+          window.timeline = new TL.Timeline(
+            'timeline-embed', 
+            data, 
+            {
+              hash_bookmark: false,
+              initial_zoom: 4,
+              timenav_height_percentage: 40
+            }
+          );
+        });
+    } else {
+      setTimeout(initTimeline, 100);
+    }
+  };
+  initTimeline();
 
-  <!-- Streak Calendar -->
-  <!-- <div class="section section-width">
-        <div class="common-header-text">
-            Streak Calendar
-        </div>
-        <div class="rows">
-            <div class="chart-rows">
-                {Object.keys(chumpData.chumpsByYearWeek).map((year) => (
-                    <div class="chart-row">
-                        <div class="year common-big-text">
-                            {year}
-                        </div>
-                        <div class="hit-list">
-                            {Object.keys(chumpData.chumpsByYearWeek[year]).map((elemWeek) => (
-                                <div class="hit-list">
-                                    <div
-                                        class="tooltip"
-                                        onclick={() => setLightboxData({ lightboxIsOpen: true, key: [year, elemWeek] })}
-                                    >
-                                        <div
-                                            class={`
-                                                hit-box
-                                                ${chumpData.chumpsByYearWeek[year][elemWeek].length > 1 ? 'hit-box-double-kill' : ''}
-                                                ${chumpData.chumpsByYearWeek[year][elemWeek].length === 1 ? 'hit-box-hit' : ''}
-                                                ${chumpData.chumpsByYearWeek[year][elemWeek].length === 0 ? 'hit-box-safe' : ''}
-                                            `}
-                                        >
-                                            {chumpData.chumpsByYearWeek[year][elemWeek].length}
-                                        </div>
-                                        <div class="tooltip-text">
-                                            <div class="popup-box">
-                                                <img
-                                                    src={chumpData.chumpsByYearWeek[year][elemWeek][0]?.image}
-                                                    style="width: 7em;"
-                                                    alt="Chump Image"
-                                                />
-                                                <div>{chumpData.chumpsByYearWeek[year][elemWeek][0]?.date}</div>
-                                                <div>{chumpData.chumpsByYearWeek[year][elemWeek][0]?.name}</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                ))}
-            </div>
-        </div>
-    </div> -->
+  // Fullscreen controls
+  const toggleBtn = document.getElementById('timeline-toggle');
+  const closeBtn = document.getElementById('timeline-close');
+  const timelineOuter = document.querySelector('.timeline-outer');
+  const body = document.body;
 
-  <!-- Histogram -->
-  <!-- <div class="section section-width">
-        <div class="common-header-text">Histogram of Streaks</div>
-        <div class="bar-chart">
-            {histogramData.map((bin, index) => (
-                <div
-                    class="bar"
-                    style={`height: ${(bin.count / Math.max(...histogramData.map(b => b.count))) * 100}%;`}
-                >
-                    <div class="bar-label">
-                        {Math.round(bin.start)}-{Math.round(bin.end)}
-                    </div>
-                </div>
-            ))}
-        </div>
-        <div class="x-axis-label">Streaks in days</div>
-    </div> -->
+  const enterFullscreen = () => {
+    timelineOuter.classList.add('timeline-fullscreen');
+    body.style.overflow = 'hidden';
+    toggleBtn.classList.add('timeline-toggle-fullscreen');
+    toggleBtn.textContent = 'Exit Fullscreen';
+    toggleBtn.removeEventListener('click', enterFullscreen);
+    toggleBtn.addEventListener('click', exitFullscreen);
+    if (window.timeline) {
+      setTimeout(() => window.timeline.updateDisplay(), 400);
+    }
+  };
+
+  const exitFullscreen = () => {
+    timelineOuter.classList.remove('timeline-fullscreen');
+    toggleBtn.classList.remove('timeline-toggle-fullscreen');
+    toggleBtn.textContent = 'View Fullscreen';
+    toggleBtn.removeEventListener('click', exitFullscreen);
+    toggleBtn.addEventListener('click', enterFullscreen);
+    body.style.overflow = '';
+    if (window.timeline) {
+      setTimeout(() => window.timeline.updateDisplay(), 100);
+    }
+  };
+
+  toggleBtn.addEventListener('click', enterFullscreen);
+  closeBtn.addEventListener('click', exitFullscreen);
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && timelineOuter.classList.contains('timeline-fullscreen')) {
+      exitFullscreen();
+    }
+  });
+});
+</script>
 
   <!-- Links -->
   <div class="section section-width">
