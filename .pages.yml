@@ -38,7 +38,8 @@ content:
       - { name: description, label: Description, type: rich-text, required: true }
       - name: media
         label: Media
-        type: list
+        type: object
+        list: true
         required: false
         fields:
           - { name: type, label: Type, type: string, required: true }
