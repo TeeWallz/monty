@@ -36,15 +36,16 @@ content:
       - name: date
         label: Date
         type: date
+        required: true
         options:
           format: yyyy-MM-dd
       - name: event_type
         label: Event Type
         type: select
+        required: true
         options:
           values: [ Chump, News, MajorEvent ]
       - { name: slug, label: Slug, type: string }
-      - { name: description, label: Description, type: rich-text, required: true }
       - { name: thanks, default: "temp", label: Thanks, widget: "string" }
       - name: media
         label: Media
