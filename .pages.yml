@@ -42,7 +42,7 @@ content:
         label: Event Type
         type: select
         options:
-          values: [ Chump, News ]
+          values: [ Chump, News, MajorEvent ]
       - { name: slug, label: Slug, type: string }
       - { name: description, label: Description, type: rich-text, required: true }
       - { name: thanks, default: "temp", label: Thanks, widget: "string" }
