@@ -33,9 +33,14 @@ content:
     path: src/content/events
     fields:
       - { name: title, label: Title, type: string, required: true }
-      - { name: date, label: Date, type: date, required: true }
-      - { name: location, label: Location, type: string, required: true }
+      - name: date
+        label: Date
+        type: date
+        options:
+          format: yyyy-MM-dd
+      - { name: slug, label: Slug, type: string }
       - { name: description, label: Description, type: rich-text, required: true }
+      - { name: thanks, default: "temp", label: Thanks, widget: "string" }
       - name: media
         label: Media
         type: object
