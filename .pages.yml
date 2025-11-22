@@ -37,7 +37,7 @@ content:
       - { name: location, label: Location, type: string, required: true }
       - { name: description, label: Description, type: rich-text, required: true }
       - name: media
-        label: Media
+        label: Mediax
         type: object
         fields:
           - { name: type, label: Type, type: string, required: true }
