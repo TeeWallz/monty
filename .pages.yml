@@ -61,3 +61,6 @@ content:
             options:
               path: src/content/chumps/images
               extensions: [ jpg, jpeg, png, gif, webm ]
+          - name: body
+            label: Body
+            type: rich-text
