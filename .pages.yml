@@ -38,6 +38,11 @@ content:
         type: date
         options:
           format: yyyy-MM-dd
+      - name: event_type
+        label: Event Type
+        type: select
+        options:
+          values: [ Chump, News ]
       - { name: slug, label: Slug, type: string }
       - { name: description, label: Description, type: rich-text, required: true }
       - { name: thanks, default: "temp", label: Thanks, widget: "string" }
