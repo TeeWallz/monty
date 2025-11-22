@@ -42,6 +42,11 @@ content:
         list: true
         required: false
         fields:
-          - { name: type, label: Type, type: string, required: true }
-          - { name: url, label: URL, type: string, required: true }
           - { name: caption, label: Caption, type: string, required: false }
+          - name: image
+            label: Image
+            type: image
+            list: false
+            options:
+              path: src/content/chumps/images
+              extensions: [ jpg, jpeg, png, gif, webm ]
