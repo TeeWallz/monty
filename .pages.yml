@@ -2,24 +2,6 @@ media:
   input: public
   output: /
 content:
-  - name: posts
-    label: Posts
-    type: collection
-    path: src/content/blog
-    view:
-      fields: [ title, draft, date ]
-    fields:
-      - { name: author, label: Author, type: string }
-      - { name: pubDatetime, label: Date, type: date }
-      - { name: modDatetime, label: Date, type: date }
-      - { name: title, label: Title, type: string, required: true }
-      - { name: ogImage, label: Title, type: string }
-      - { name: slug, label: Slug, type: string }
-      - { name: featured, label: Featured, type: boolean }
-      - { name: draft, label: Draft, type: boolean }
-      - { name: tags, label: Tags, type: string, list: true }
-      - { name: description, label: Description, type: string, required: true  }
-      - { name: body, label: Body, type: rich-text }
   - name: chumps
     label: Chumps
     type: collection
@@ -27,15 +9,6 @@ content:
     fields:
       - { name: name, label: Name, widget: "string" }
       - { name: slug, label: Slug, type: string }
-      # - label: "Date"
-      #   name: "date"
-      #   widget: "datetime"
-      #   default: "{{now}}"
-      #   date_format: "YYYY-MM-DD" # e.g. 24.12.2021
-      #   # time_format: "HH:mm" # e.g. 21:07
-      #   # timeFormat: false
-      #   # format: "YYYY-MM-DD"
-      #   picker_utc: false
       - name: date
         label: Date
         type: date
@@ -54,13 +27,20 @@ content:
         options:
           path: src/content/chumps/images
           extensions: [ jpg, jpeg, png, gif, webm ]
-      # - { name: image, label: Image, widget: "image" }
-      # - { name: media, label: Media, widget: "list", required: false, field: { name: file, widget: "image" } }
-  - name: about
-    label: About page
-    type: file
-    path: src/pages/about.md
+  - name: events
+    label: Events
+    type: collection
+    path: src/content/events
     fields:
-      - { name: layout, type: string, hidden: true, default: "../layouts/AboutLayout.astro" }
-      - { name: title, label: Title, type: string }
-      - { name: body, label: Body, type: rich-text, options: { input: public/assets, output: /assets } }
+      - { name: title, label: Title, type: string, required: true }
+      - { name: date, label: Date, type: date, required: true }
+      - { name: location, label: Location, type: string, required: true }
+      - { name: description, label: Description, type: rich-text, required: true }
+      - name: media
+        label: Media
+        type: list
+        required: false
+        fields:
+          - { name: type, label: Type, type: string, required: true }
+          - { name: url, label: URL, type: string, required: true }
+          - { name: caption, label: Caption, type: string, required: false }
