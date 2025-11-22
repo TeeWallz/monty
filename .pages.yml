@@ -47,7 +47,8 @@ content:
         list: true
         required: false
         fields:
-          - { name: caption, label: Caption, type: string, required: false }
+          - { name: caption, label: Caption, type: string, required: true }
+          - { name: ismain, label: Is Main Image?, type: boolean, required: true }
           - name: image
             label: Image
             type: image
