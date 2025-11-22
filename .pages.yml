@@ -27,20 +27,5 @@ content:
         options:
           path: src/content/chumps/images
           extensions: [ jpg, jpeg, png, gif, webm ]
-  - name: events
-    label: Events
-    type: collection
-    path: src/content/events
-    fields:
-      - { name: title, label: Title, type: string, required: true }
-      - { name: date, label: Date, type: date, required: true }
-      - { name: location, label: Location, type: string, required: true }
-      - { name: description, label: Description, type: rich-text, required: true }
-      - name: media
-        label: Mediax
-        type: object
-        fields:
-          - { name: type, label: Type, type: string, required: true }
-          - { name: url, label: URL, type: string, required: true }
-          - { name: caption, label: Caption, type: string, required: false }
+
 
