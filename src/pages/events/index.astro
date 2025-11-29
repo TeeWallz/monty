@@ -1,0 +1,25 @@
+---
+import { getEventsData } from "@utils/getChumps";
+const eventData = await getEventsData();
+---
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Events</title>
+  </head>
+  <body>
+    <h1>Events</h1>
+    <ul>
+      {eventData.map((event) => (
+        <li>
+          <img src={event.media.find((m) => m.ismain)?.image} alt={event.title} width="100" />
+          <a href={`/events/${event.slug}`}>
+            <strong>{event.title}</strong> - {event.date}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </body>
+</html>

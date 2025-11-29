@@ -1,0 +1,37 @@
+---
+import { getEventsData } from "@utils/getChumps";
+export async function getStaticPaths() {
+
+  const eventaData = await getEventsData();
+  return eventaData.map((event: { slug: string }) => ({
+    params: { event: event.slug },
+  }));
+}
+
+const { event } = Astro.params;
+const eventData = await getEventsData();
+const outEvent = eventData.find((e) => e.slug === event);
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Event: {event}</title>
+  </head>
+  <body>
+    <h1>{outEvent?.title}</h1>
+    <p>Date: {outEvent?.date.toDateString()}</p>
+    <p>Thanks: {outEvent?.thanks}</p>
+    <div>
+      {outEvent?.media.map((media) => (
+        <div>
+          <img src={media.image} alt={outEvent?.title} width="200" />
+          <p>{media.caption}</p>
+        </div>
+      ))}
+    </div>
+    
+  </body>
+</html> 

@@ -3,7 +3,7 @@ import { z, defineCollection, getCollection } from "astro:content";
 export const ChumpZodSchema = z.object({
   id: z.string(),
   name: z.string(),
-  name_slug: z.string(),
+  slug: z.string(),
   thanks: z.string().nullable(),
   url: z.string(),
   date: z.date(),

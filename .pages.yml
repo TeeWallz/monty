@@ -38,7 +38,9 @@ content:
         type: date
         required: true
         options:
+          # ISO FORMAT FULL datetime
           format: yyyy-MM-dd
+          
       - name: event_type
         label: Event Type
         type: select

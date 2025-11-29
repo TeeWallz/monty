@@ -1,8 +1,53 @@
 import { z, getCollection } from "astro:content";
 import fs from "fs";
-import matter from "gray-matter";
 import path from "path";
 import { date } from "astro/zod";
+
+
+export interface EventMedia {
+  caption: string;
+  ismain: boolean;
+  image: string;
+  body: string;
+}
+
+export interface event {
+  title: string;
+  date: Date;
+  event_type: string;
+  slug: string;
+  thanks: string; 
+  media: EventMedia[];
+}
+
+export async function getEventsData(): Promise<event[]> {
+  const raw = await getCollection("events");
+  
+  let events: event[] = raw.map((e) => {
+    const rawMedia = e.data.media ?? [];
+    const media: EventMedia[] = rawMedia.map((m: any) => {
+      return {
+        caption: m?.caption ?? "",
+        ismain: m?.ismain ?? false,
+        image: m?.image ?? "",
+        body: m?.body ?? "",
+      };
+    });
+
+    return {
+      title: e.data.title ?? "",
+      date: e.data.date ?? new Date(0),
+      event_type: e.data.event_type ?? "",
+      slug: e.slug,
+      thanks: e.data.thanks ?? "",
+      media,
+    };
+  });
+  events = events.sort((a, b) => {
+    return new Date(b.date).getTime() - new Date(a.date).getTime();
+  });
+  return events;
+}
 
 export async function getChumpData(): Promise<ChumpData> {
   let chumps: Chump[] = await getCollection("chumps");

@@ -6,7 +6,7 @@ import path from "path";
 export const ChumpDataZod = z.object({
   id: z.string(),
   name: z.string(),
-  name_slug: z.string().optional(),
+  slug: z.string().optional(),
   thanks: z.string().nullable(),
   url: z.string(),
   date: z.date(),
@@ -82,12 +82,12 @@ export async function getChumpDataFromFiles(): Promise<ChumpData> {
     const fileContents = fs.readFileSync(filePath, "utf8");
     const { data } = matter(fileContents);
     const {
-      name, name_slug, date, thanks, url, image
+      name, slug, date, thanks, url, image
     } = data;
 
     const chump: Chump = {
       id: filename,
-      slug: name_slug,
+      slug: slug,
       body: fileContents,
       collection: "chumps",
       data: {

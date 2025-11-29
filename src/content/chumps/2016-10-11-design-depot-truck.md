@@ -1,6 +1,6 @@
 ---
 name: Design Depot Truck
-name_slug: design-depot-truck
+slug: design-depot-truck
 date: 2016-10-11
 thanks:
 url: https://www.triplem.com.au/melbourne/stuff/pub-talk/2016/10/the-montague-street-bridge-rips-open-another-truck/

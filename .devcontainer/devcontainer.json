@@ -3,13 +3,27 @@
 {
 	"name": "Node.js & TypeScript",
 	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-	"image": "mcr.microsoft.com/devcontainers/typescript-node:1-18-bullseye"
+	"image": "mcr.microsoft.com/devcontainers/typescript-node:1-18-bullseye",
+
+	// mount .ssh into devcontainer for git permissions
+	"mounts": [
+		"source=${localEnv:HOME}/.ssh,target=/home/node/.ssh,type=bind,consistency=cached"
+	],
 
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	// "features": {},
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	// "forwardPorts": [],
+	"forwardPorts": [
+		4321
+	],
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"astro-build.astro-vscode"
+			]
+		}
+	},
 
 	// Use 'postCreateCommand' to run commands after the container is created.
 	// "postCreateCommand": "yarn install",
