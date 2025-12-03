@@ -14,7 +14,6 @@ content:
         type: date
         options:
           format: yyyy-MM-dd
-      # - { name: date_chump, default: 1, label: "Order of chump on a given day", widget: "number", value_type: "int" }
       - name: date_chump
         label: "Order of chump on a given day"
         type: number
@@ -27,6 +26,7 @@ content:
         options:
           path: src/content/chumps/images
           extensions: [ jpg, jpeg, png, gif, webm ]
+          
   - name: events
     label: Events
     type: collection
@@ -38,9 +38,7 @@ content:
         type: date
         required: true
         options:
-          # ISO FORMAT FULL datetime
           format: yyyy-MM-dd
-          
       - name: event_type
         label: Event Type
         type: select
@@ -59,14 +57,34 @@ content:
         required: false
         fields:
           - { name: caption, label: Caption, type: string, required: true }
-          - { name: ismain, label: Is Main Image?, type: boolean, required: true }
+          - { name: ismain, label: Is Main Media?, type: boolean, required: true }
+          - name: media_type
+            label: Media Type
+            type: select
+            required: true
+            default: image
+            options:
+              values: [ image, video ]
           - name: image
             label: Image
             type: image
             list: false
+            required: false
             options:
               path: public/images/events/
-              extensions: [ jpg, jpeg, png, gif, webm ]
+              extensions: [ jpg, jpeg, png, gif, webp ]
+          - name: video_file
+            label: Video File
+            type: file
+            list: false
+            required: false
+            options:
+              path: public/videos/events/
+              extensions: [ mp4, webm, mov, avi ]
+          - name: video_url
+            label: Video URL (YouTube/Vimeo/etc.)
+            type: string
+            required: false
           - name: body
             label: Body
             type: rich-text

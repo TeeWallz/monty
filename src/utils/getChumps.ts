@@ -38,6 +38,9 @@ export async function getEventsData(): Promise<event[]> {
 
   let events: event[] = raw.map((e) => {
     const rawMedia = e.data.media ?? [];
+    if(e.slug === "2025-10-16_fetch-and-forget") {
+      console.log("Raw media for fetch-and-forget:", rawMedia);
+    }
     const media: EventMedia[] = rawMedia.map((m: any) => {
       return {
         caption: m?.caption ?? "",

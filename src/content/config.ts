@@ -104,7 +104,7 @@ const events = defineCollection({
           caption: z.string(),
           ismain: z.boolean(),
           image: z.any(),
-          body: z.string(),
+          body: z.string().optional(),
         })
       )
       .optional(),

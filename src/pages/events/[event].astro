@@ -43,14 +43,33 @@ const otherImages = outEvent?.media.filter((m) => !m.ismain);
 
 
     <div>
-      {outEvent?.media.map((media) => (
         <div>
-          <img src={media.image} alt={outEvent?.title} width="200" />
-          <p>{media.caption}</p>
+          <a href={mainImage?.image} target="_blank" rel="noopener noreferrer">
+            <img src={mainImage?.image} alt={outEvent?.title} width="200" />
+          </a>
+          <p>{mainImage?.caption}</p>
         </div>
-      ))}
     </div>
-    <!-- previous and next chump using flex divs -->
+    <!-- Gallery -->
+     <div style="margin-top: 2rem;">
+      <h2>Gallery</h2>
+      <div style="display: flex; flex-wrap: wrap; gap: 1rem;">
+        {otherImages && otherImages.length > 0 ? (
+          otherImages.map((media) => (
+            <div>
+              <a href={media.image} target="_blank" rel="noopener noreferrer">
+                <img src={media.image} alt={outEvent?.title} width="150" />
+              </a>
+              <p>{media.caption}</p>
+            </div>
+          ))
+        ) : (
+          <p>No additional images.</p>
+        )}
+      </div>
+    </div>
+
+        <!-- previous and next chump using flex divs -->
     <div style="display: flex; justify-content: space-between; margin-top: 2rem; border-top: 1px solid #ccc; padding-top: 1rem;">
       {prevEvent ? (
         <a href={`/events/${prevEvent.slug}`}>&larr; {prevEvent.title}</a>
@@ -64,10 +83,11 @@ const otherImages = outEvent?.media.filter((m) => !m.ismain);
         <div></div>
       )} 
     </div>
+
     <!-- return to chumps -->
      <div style="margin-top: 1rem;">
       <a href="/events">Back to Events</a>
-    </div>
+    
 
     <!-- <pre>
     {JSON.stringify(outEvent, null, 2)}

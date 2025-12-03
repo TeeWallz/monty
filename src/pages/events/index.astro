@@ -146,11 +146,13 @@ const cooLinks = [
                                       </a>
                                       {event.media.length > 0 && (
                                         <div>
-                                          <img 
-                                            src={event.media[0].image} 
-                                            alt={event.media[0].caption || event.title}
-                                            class="major-event-image"
-                                          />
+                                          <a href={event.media[0].image} target="_blank" rel="noopener noreferrer">
+                                            <img 
+                                              src={event.media[0].image} 
+                                              alt={event.media[0].caption || event.title}
+                                              class="major-event-image"
+                                            />
+                                          </a>
                                         </div>
                                       )}
                                     </div>
@@ -176,11 +178,13 @@ const cooLinks = [
                                   {/* Chump image */}
                                   {event.media.length > 0 && (
                                     <div class="event-image-container">
-                                      <img 
-                                        src={event.media[0].image} 
-                                        alt={event.media[0].caption || event.title}
-                                        class="event-image"
-                                      />
+                                      <a href={event.media[0].image} target="_blank" rel="noopener noreferrer">
+                                        <img 
+                                          src={event.media[0].image} 
+                                          alt={event.media[0].caption || event.title}
+                                          class="event-image"
+                                        />
+                                      </a>
                                     </div>
                                   )}
                                   
