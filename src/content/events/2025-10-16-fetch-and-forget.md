@@ -23,6 +23,6 @@ media:
     image: /images/events/1121-684-lain-cats1.png
   - caption: Video
     ismain: false
-    media_type: image
+    media_type: video
     video_file: /videos/events/rapidsave.com_monty_being_a_menace_again-ybqra1w5ccvf1.webm
 ---
