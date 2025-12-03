@@ -1,0 +1,5 @@
+---
+import {getEventsDataGroupedByYearMonth} from '../../utils/getChumps.ts';
+const eventsDataGroupedByYearMonth = await getEventsDataGroupedByYearMonth();
+---
+<pre>{JSON.stringify(eventsDataGroupedByYearMonth, null, 2)}</pre>

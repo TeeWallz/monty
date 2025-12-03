@@ -1,25 +1,220 @@
 ---
-import { getEventsData } from "@utils/getChumps";
-const eventData = await getEventsData();
+import Layout from "@layouts/2010Layout.astro";
+import { 
+  getEventsDataGroupedByYearMonth, 
+  type EventsGroupedByYearMonth,
+  getStreakClass,
+  getStreakLabel 
+} from "@utils/getChumps";
+
+import "../../styles/events.css";
+
+const eventData: EventsGroupedByYearMonth = await getEventsDataGroupedByYearMonth();
+
+// Helper function to sort months in chronological order (January to December)
+const monthOrder = [
+  "January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"
+];
+
+// Helper function to sort years in reverse (newest to oldest)
+const sortedYears = Object.keys(eventData)
+  .map(year => parseInt(year))
+  .sort((a, b) => b - a);
+
+// Helper function to format date for comparison
+const formatDateForComparison = (date: Date): string => {
+  return date.toISOString().split('T')[0]; // YYYY-MM-DD format
+};
+
+const cooLinks = [
+  {
+    name: "Why Do Trucks Keep Smashing Into This Bridge?",
+    url: "https://www.youtube.com/watch?v=HR7NivKqfzo",
+  },
+  {
+    name: "Montague st Bridge by David Cosma",
+    url: "https://www.youtube.com/watch?v=jaUo1KXIU1k",
+  },
+];
 ---
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Events</title>
-  </head>
-  <body>
-    <h1>Events</h1>
-    <ul>
-      {eventData.map((event) => (
-        <li>
-          <img src={event.media.find((m) => m.ismain)?.image} alt={event.title} width="100" />
-          <a href={`/events/${event.slug}`}>
-            <strong>{event.title}</strong> - {event.date}
-          </a>
-        </li>
-      ))}
-    </ul>
-  </body>
-</html>
+
+<Layout>
+  <div class="section section-width">
+    <h1>Events History</h1>
+    <p>All events in chronological order:</p>
+    
+    {sortedYears.map((year) => (
+      <div key={year} class="events-container">
+        <h2>{year}</h2>
+
+        {(() => {
+          // Get months for this year
+          const months = Object.keys(eventData[year] || {});
+          
+          // Sort months in chronological order (January to December)
+          const sortedMonths = months.sort((a, b) => {
+            return monthOrder.indexOf(a) - monthOrder.indexOf(b);
+          }).reverse();
+          
+          return sortedMonths.map((month) => {
+            const events = eventData[year][month];
+            
+            // Sort events within each month by date (newest first)
+            const sortedEvents = [...events].sort((a, b) => {
+              return new Date(b.date).getTime() - new Date(a.date).getTime();
+            });
+            
+            // Group events by same day
+            const groupedEvents: {[date: string]: event[]} = {};
+            sortedEvents.forEach(event => {
+              const dateKey = formatDateForComparison(event.date);
+              if (!groupedEvents[dateKey]) {
+                groupedEvents[dateKey] = [];
+              }
+              groupedEvents[dateKey].push(event);
+            });
+            
+            // Get unique dates sorted newest first
+            const uniqueDates = Object.keys(groupedEvents).sort().reverse();
+            
+            return (
+              <div key={month}>
+                <h3>{month}</h3>
+                <ul class="events-list">
+                  {uniqueDates.map((dateKey) => {
+                    const sameDayEvents = groupedEvents[dateKey];
+                    const isMultipleEvents = sameDayEvents.length > 1;
+                    const firstEvent = sameDayEvents[0];
+                    const displayDate = new Date(firstEvent.date);
+                    
+                    return (
+                      <li key={dateKey} class={`same-day-group ${isMultipleEvents ? 'multiple-events' : ''}`}>
+                        {/* Same day events header */}
+                        {isMultipleEvents && (
+                          <div class="same-day-header">
+                            <div class="same-day-badge">
+                              <span class="same-day-emoji">🎭</span>
+                              <span class="same-day-text">
+                                {sameDayEvents.length} events on the same day! What are the odds?!
+                              </span>
+                              <span class="same-day-emoji">🤯</span>
+                            </div>
+                            <div class="same-day-date">
+                              {displayDate.toLocaleDateString('en-US', {
+                                weekday: 'long',
+                                year: 'numeric',
+                                month: 'long',
+                                day: 'numeric'
+                              })}
+                            </div>
+                          </div>
+                        )}
+                        
+                        {/* Render events for this day */}
+                        <div class={`same-day-events ${isMultipleEvents ? 'has-multiple' : ''}`}>
+                          {sameDayEvents.map((event, index) => {
+                            // Check if it's a major event
+                            if (event.event_type === "MajorEvent") {
+                              return (
+                                <div key={event.slug} class="event-item-container">
+                                  {!isMultipleEvents && (
+                                    <div class="single-event-date">
+                                      {displayDate.toLocaleDateString('en-US', {
+                                        weekday: 'long',
+                                        year: 'numeric',
+                                        month: 'long',
+                                        day: 'numeric'
+                                      })}
+                                    </div>
+                                  )}
+                                  <div class="major-event-container">
+                                    {/* Horizontal bar for major events */}
+                                    <div class="major-event-divider">
+                                      <div class="major-event-badge">
+                                        MAJOR EVENT
+                                      </div>
+                                    </div>
+                                    
+                                    {/* Major event content */}
+                                    <div class="major-event-content">
+                                      <a 
+                                        href={`/events/${event.slug}`} 
+                                        class="event-title"
+                                      >
+                                        {event.title}
+                                      </a>
+                                      {event.media.length > 0 && (
+                                        <div>
+                                          <img 
+                                            src={event.media[0].image} 
+                                            alt={event.media[0].caption || event.title}
+                                            class="major-event-image"
+                                          />
+                                        </div>
+                                      )}
+                                    </div>
+                                  </div>
+                                </div>
+                              );
+                            } 
+                            
+                            // Regular chump event
+                            return (
+                              <div key={event.slug} class="event-item-container">
+                                {!isMultipleEvents && index === 0 && (
+                                  <div class="single-event-date">
+                                    {displayDate.toLocaleDateString('en-US', {
+                                      weekday: 'long',
+                                      year: 'numeric',
+                                      month: 'long',
+                                      day: 'numeric'
+                                    })}
+                                  </div>
+                                )}
+                                <div class="event-item">
+                                  {/* Chump image */}
+                                  {event.media.length > 0 && (
+                                    <div class="event-image-container">
+                                      <img 
+                                        src={event.media[0].image} 
+                                        alt={event.media[0].caption || event.title}
+                                        class="event-image"
+                                      />
+                                    </div>
+                                  )}
+                                  
+                                  {/* Chump details */}
+                                  <div>
+                                    <a 
+                                      href={`/events/${event.slug}`}
+                                      class="chump-title"
+                                    >
+                                      {event.title}
+                                    </a>
+                                  {event.days_since_last_chump !== undefined && (
+                                    <div 
+                                      class={getStreakClass(event.streak_rank)}
+                                      data-streak={event.days_since_last_chump}
+                                    >
+                                      {getStreakLabel(event.days_since_last_chump, event.streak_rank)}
+                                    </div>
+                                  )}
+                                  </div>
+                                </div>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
+            );
+          });
+        })()}
+      </div>
+    ))}
+  </div>
+</Layout>

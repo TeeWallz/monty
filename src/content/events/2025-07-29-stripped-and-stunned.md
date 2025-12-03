@@ -1,5 +1,5 @@
 ---
-title: "Stripped and Stunned: A Truck\u2019s Modesty Lost at 40 km/h"
+title: "Stripped and Stunned: A Truck's Modesty Lost at 40 km/h"
 date: 2025-07-29
 event_type: Chump
 slug: 2025-07-29_stripped-and-stunned

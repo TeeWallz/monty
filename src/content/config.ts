@@ -96,7 +96,7 @@ const events = defineCollection({
   schema: z.object({
     title: z.string(),
     date: z.date(),
-    event_type: z.enum(["Chump", "News", "MajorEvent"]),
+    event_type: z.enum(["Chump", "News", "MajorEvent", "Era"]),
     thanks: z.string().optional(),
     media: z
       .array(

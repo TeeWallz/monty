@@ -1,0 +1,5 @@
+---
+import { getEventsData } from "@utils/getChumps";
+const eventData = await getEventsData();
+---
+<pre>{JSON.stringify(eventData, null, 2)}</pre>

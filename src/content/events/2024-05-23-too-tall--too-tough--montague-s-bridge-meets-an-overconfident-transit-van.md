@@ -1,5 +1,5 @@
 ---
-title: "Too Tall, Too Tough: Montague\u2019s Bridge Meets an Overconfident Transit\
+title: "Too Tall, Too Tough: Montague's Bridge Meets an Overconfident Transit\
   \ Van"
 date: 2024-05-23
 event_type: Chump

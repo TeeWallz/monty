@@ -1,5 +1,6 @@
 ---
-import { getEventsData } from "@utils/getChumps";
+import Layout from "@layouts/2010Layout.astro";
+import { getEventsData, getStreakClass, getStreakLabel } from "@utils/getChumps";
 export async function getStaticPaths() {
 
   const eventaData = await getEventsData();
@@ -11,19 +12,36 @@ export async function getStaticPaths() {
 const { event } = Astro.params;
 const eventData = await getEventsData();
 const outEvent = eventData.find((e) => e.slug === event);
+
+// event_index
+const event_index = eventData.findIndex((e) => e.slug === event);
+const prevEvent = eventData[event_index - 1] || null;
+const nextEvent = eventData[event_index + 1] || null;
+
+const mainImage = outEvent?.media.find((m) => m.ismain);
+const otherImages = outEvent?.media.filter((m) => !m.ismain);
 ---
 
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Event: {event}</title>
-  </head>
-  <body>
+<Layout>
+  <div class="section section-width">
     <h1>{outEvent?.title}</h1>
     <p>Date: {outEvent?.date.toDateString()}</p>
+    <!-- streak information -->
+    {outEvent?.days_since_last_chump !== undefined && (
+      <div 
+        class={getStreakClass(outEvent?.streak_rank)}
+        data-streak={outEvent?.days_since_last_chump}
+      >
+        {getStreakLabel(outEvent?.days_since_last_chump, outEvent?.streak_rank)}
+      </div>
+    )}
+
+      
+
     <p>Thanks: {outEvent?.thanks}</p>
+
+
+
     <div>
       {outEvent?.media.map((media) => (
         <div>
@@ -32,6 +50,23 @@ const outEvent = eventData.find((e) => e.slug === event);
         </div>
       ))}
     </div>
-    
-  </body>
-</html> 
+    <!-- previous and next chump using flex divs -->
+    <div style="display: flex; justify-content: space-between; margin-top: 2rem; border-top: 1px solid #ccc; padding-top: 1rem;">
+      {prevEvent ? (
+        <a href={`/events/${prevEvent.slug}`}>&larr; {prevEvent.title}</a>
+      ) : (
+        <div></div>
+      )}
+      {nextEvent ? (
+        <a style="border-left: 1px solid #ccc; padding-left: 1rem; justify-self: right;"
+        href={`/events/${nextEvent.slug}`}>{nextEvent.title} &rarr;</a>
+      ) : (
+        <div></div>
+      )} 
+    </div>
+
+    <!-- <pre>
+    {JSON.stringify(outEvent, null, 2)}
+    </pre> -->
+    </div>
+</Layout>

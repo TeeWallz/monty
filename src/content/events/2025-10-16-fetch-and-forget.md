@@ -1,5 +1,5 @@
 ---
-title: "Fetch and Forget: The Delivery That Didn\u2019t Make It"
+title: "Fetch and Forget: The Delivery That Didn't Make It"
 date: 2025-10-16
 event_type: Chump
 slug: 2025-10-16_fetch-and-forget

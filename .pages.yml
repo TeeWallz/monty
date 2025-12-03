@@ -46,7 +46,7 @@ content:
         type: select
         required: true
         options:
-          values: [ Chump, News, MajorEvent ]
+          values: [ Chump, News, MajorEvent, Era ]
       - { name: slug, label: Slug, type: string }
       - { name: thanks, default: "temp", label: Thanks, widget: "string" }
       - name: body
