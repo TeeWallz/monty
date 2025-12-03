@@ -65,7 +65,7 @@ content:
             type: image
             list: false
             options:
-              path: src/content/chumps/images
+              path: public/images/events/
               extensions: [ jpg, jpeg, png, gif, webm ]
           - name: body
             label: Body
