@@ -15,8 +15,7 @@ media:
   - caption: Test image
     ismain: false
     image: /images/general/312x250_LOL-Smiley-Face.gif
-  - caption: A caption
+  - caption: test
     ismain: false
-    image: /senjou_converted.png
-    body: test image!
+    image: /images/events/1121-684-lain-cats1.png
 ---
