@@ -5,9 +5,18 @@ event_type: Chump
 slug: 2025-10-16_fetch-and-forget
 thanks: Reddit and @jacquifelgate
 media:
-- caption: ''
-  ismain: true
-  image: /2025-10-16.png
-  body: https://www.reddit.com/r/melbourne/comments/1o7na21/monty_being_a_menace_again/?share_id=CjpJu9L3Qv0M6RZ3dI3oe
+  - caption: Caption!
+    ismain: true
+    image: /2025-10-16.png
+    body: "[https://www.reddit.com/r/melbourne/comments/1o7na21/monty\\_being\\_a\\\
+      _menace\\_again/?share\\_id=CjpJu9L3Qv0M6RZ3dI3oe](https://www.reddit.com\
+      /r/melbourne/comments/1o7na21/monty_being_a_menace_again/?share_id=CjpJu9\
+      L3Qv0M6RZ3dI3oe)"
+  - caption: Test image
+    ismain: false
+    image: /images/general/312x250_LOL-Smiley-Face.gif
+  - caption: A caption
+    ismain: false
+    image: /senjou_converted.png
+    body: test image!
 ---
-
