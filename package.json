@@ -33,7 +33,6 @@
   },
   "devDependencies": {
     "@astrojs/react": "^3.0.9",
-    "@astrojs/sitemap": "^3.0.5",
     "@astrojs/tailwind": "^5.1.0",
     "@divriots/jampack": "^0.23.2",
     "@tailwindcss/typography": "^0.5.10",
@@ -41,6 +40,7 @@
     "@types/react": "^18.2.48",
     "@typescript-eslint/parser": "^6.19.0",
     "astro-eslint-parser": "^0.16.2",
+    "baseline-browser-mapping": "^2.10.8",
     "commitizen": "^4.3.0",
     "cz-conventional-changelog": "^3.3.0",
     "eslint": "^8.56.0",
