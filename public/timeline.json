@@ -72,7 +72,7 @@
         "month": "07"
       },
       "end_date": {
-        "year": "2025",
+        "year": "2026",
         "month": "12",
         "day": "31"
       },
@@ -1981,6 +1981,124 @@
       },
       "background": {
         "url": "/2025-07-01.jpg"
+      },
+      "group": "strikes"
+    },
+    {
+      "start_date": {
+        "year": "2025",
+        "month": "07",
+        "day": "29"
+      },
+      "end_date": {
+        "year": "2025",
+        "month": "08",
+        "day": "02"
+      },
+      "media": {
+        "link": "https://www.9news.com.au/national/montague-bridge-another-truck-crash-melbourne/2e8a78bb-7bdc-4e06-8c51-4eb4b9ab40de",
+        "thumbnail": "/2025-07-29.jpg"
+      },
+      "text": {
+        "headline": "<a href='https://www.9news.com.au/national/montague-bridge-another-truck-crash-melbourne/2e8a78bb-7bdc-4e06-8c51-4eb4b9ab40de'>Stripped and Stunned: A Truck’s Modesty Lost at 40 km/h</a>",
+        "text": "Strike occurred on Tuesday 29 July 2025. Held the record for 4 days."
+      },
+      "background": {
+        "url": "/2025-07-29.jpg"
+      },
+      "group": "strikes"
+    },
+    {
+      "start_date": {
+        "year": "2025",
+        "month": "08",
+        "day": "02"
+      },
+      "end_date": {
+        "year": "2025",
+        "month": "10",
+        "day": "16"
+      },
+      "media": {
+        "thumbnail": "/2025-08-02.jpg"
+      },
+      "text": {
+        "headline": "<a href='#'>Row, Row, Row Your Car (Into the Bridge, Apparently)</a>",
+        "text": "Strike occurred on Saturday 2 August 2025. Held the record for 75 days."
+      },
+      "background": {
+        "url": "/2025-08-02.jpg"
+      },
+      "group": "strikes"
+    },
+    {
+      "start_date": {
+        "year": "2025",
+        "month": "10",
+        "day": "16"
+      },
+      "end_date": {
+        "year": "2025",
+        "month": "12",
+        "day": "17"
+      },
+      "media": {
+        "link": "https://www.reddit.com/r/melbourne/comments/1o7na21/monty_being_a_menace_again/?share_id=CjpJu9L3Qv0M6RZ3dI3oe",
+        "thumbnail": "/2025-10-16.png"
+      },
+      "text": {
+        "headline": "<a href='https://www.reddit.com/r/melbourne/comments/1o7na21/monty_being_a_menace_again/?share_id=CjpJu9L3Qv0M6RZ3dI3oe'>Fetch and Forget: The Delivery That Didn’t Make It</a>",
+        "text": "Strike occurred on Thursday 16 October 2025. Held the record for 62 days."
+      },
+      "background": {
+        "url": "/2025-10-16.png"
+      },
+      "group": "strikes"
+    },
+    {
+      "start_date": {
+        "year": "2025",
+        "month": "12",
+        "day": "17"
+      },
+      "end_date": {
+        "year": "2026",
+        "month": "03",
+        "day": "07"
+      },
+      "media": {
+        "link": "https://www.instagram.com/p/DSV1QVdE5e7/?img_index=1",
+        "thumbnail": "/2025-12-17-1.jpg"
+      },
+      "text": {
+        "headline": "<a href='https://www.instagram.com/p/DSV1QVdE5e7/?img_index=1'>FOR EMERGENCY CONTACT -- WRONG TYPE OF CONTACT!</a>",
+        "text": "Strike occurred on Wednesday 17 December 2025. Held the record for 80 days."
+      },
+      "background": {
+        "url": "/2025-12-17-1.jpg"
+      },
+      "group": "strikes"
+    },
+    {
+      "start_date": {
+        "year": "2026",
+        "month": "03",
+        "day": "07"
+      },
+      "end_date": {
+        "year": "2026",
+        "month": "03",
+        "day": "16"
+      },
+      "media": {
+        "thumbnail": "/2026-03-08.png"
+      },
+      "text": {
+        "headline": "<a href='#'>Midnight Truck to PAIN</a>",
+        "text": "Strike occurred on Saturday 7 March 2026. Held the record for 9 days."
+      },
+      "background": {
+        "url": "/2026-03-08.png"
       },
       "group": "strikes"
     }
