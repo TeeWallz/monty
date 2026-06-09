@@ -69,7 +69,7 @@
 
 .left {
     transform: translateX(calc(-1 * var(--cube-width) / 2)) rotateY(-90deg);
-    background-image: url('/images/1990/RIP.gif');
+    background-image: url('/images/1990/rip2.gif');
     background-size: cover;
 }
 
