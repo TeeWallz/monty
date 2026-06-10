@@ -1,8 +1,4 @@
-import { z, getCollection } from "astro:content";
-import fs from "fs";
-import matter from "gray-matter";
-import path from "path";
-import { date } from "astro/zod";
+import { getCollection } from "astro:content";
 
 export async function getChumpData(): Promise<ChumpData> {
   let chumps: Chump[] = await getCollection("chumps");
